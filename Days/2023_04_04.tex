@@ -1,0 +1,65 @@
+\days{4 aprile 2023}
+\section{Alcuni risultati teorici}
+\osservazione{
+    Consideriamo $ \bm{x}'=\bm{f}(\bm{x}) $ e $ \bm{p} \in \Omega $ punto di equilibrio asintoticamente stabile, $ \bm{f} \in C^{1}(\Omega) $, $ \Omega \subseteq \R^{n} $ aperto. 
+    
+    Nei sistemi lineari, se $ \operatorname{Re}\lambda<0 $ per tutti gli autovalori $\lambda$ 
+    
+    $\implies$ $ \bm{p} $ attrae tutte le orbite.
+}
+\definizione{%TODO verificare che la notazione per \phi_t(q) sia coerente
+Consideriamo $ \bm{x}'=\bm{f}(\bm{x}) $ e $ \bm{p} \in \Omega $ punto di equilibrio, $ \bm{f} \in C^{1}(\Omega) $, $ \Omega \subseteq \R^{n} $ aperto. 
+
+$ \bm{p} $ si dice \emph{attrattore globale} se \[
+        \lim_{t\to + \infty} \bm{\phi}_{t}(\bm{q})  =\bm{p},\qquad \forall\, \bm{q} \in \Omega
+    \]dove $ \bm{\phi}_t(\bm{q}) $ è soluzione di \[
+        \begin{cases}
+            \bm{x}'=\bm{f}(\bm{x})\\ 
+            \bm{x}(0)=\bm{q}. 
+        \end{cases}
+    \]
+}
+\teorema[Teorema di Barbashin-Krasovskii]{doijcoijoijoijoijoijcoijsoijoijoij}{
+    Se $ V: \R^{2}\longrightarrow \R$ è una funzione di Lyapunov che soddisfa ($ H_2 $ ) e \[
+        V(\bm{x}) \longrightarrow + \infty,\qquad \norma{\bm{x}}\longrightarrow + \infty
+    \]allora $ \bm{p} $ è un attrattore globale.
+}
+\osservazione{
+    Se $ \bm{x}'=\bm{f}(\bm{x}) $ ammette più di un punto di equilibrio, allora nessuno dei due può essere attrattore globale.
+}
+\esempio{
+    \todo{Manca un esempio}%TODO manca l'esempio
+
+    In questo sistema l'orbita periodica di raggio 1 è un ciclo limite.
+}
+\definizione{
+    Un \emph{ciclo limite} è un'orbita chiusa che ammette un'intorno che non contiene altre orbite chiuse.
+}
+\definizione{
+    Se $ \gamma $ è un ciclo limite che ammette un intorno $ I_{\gamma}  $ tale che \[
+        \forall\,\bm{q} \in I_{\gamma},\qquad \lim_{t\to + \infty} d\left(\bm{\varphi}_t (\bm{q}), \gamma\right) = 0
+    \]allora $\gamma$ si dice \emph{stabile}. Altrimenti $\gamma$ è \emph{instabile}.
+}
+\teorema[Teorema di Poincaré-Bendixon]{dpokscpokdpokpcokpoktppokincarre}{
+    Sia $ \bm{f}:\Omega \subseteq \R^{2}\longrightarrow \R^{2} $, $ \Omega $ aperto e $ \bm{f} \in C^{1}(\Omega) $. Supponiamo che \begin{itemize}
+        \item $ K \subseteq \Omega $ compatto;
+        \item $ \forall\, \bm{p} \in K $, $ \bm{f}(\bm{p})\neq \bm{0} $; 
+        \item $ \exists\, \bm{q} \in K $ tale che $ \bm{\phi}_{t}(\bm{q}) \in K $, $ \forall\, t \ge 0 $.
+    \end{itemize} 
+
+    Allora $ K $ contiene un ciclo limite.
+}
+\definizione{
+    Il compatto $ K $ che soddisfa questo teorema si chiama \emph{trapping region}.
+}
+\esempio{
+    Torniamo all'esempio di prima, scritto direttamente in forma polare: \[
+        \begin{cases}
+            r'=r(1-r^{2})\\ 
+            \theta=1
+        \end{cases}
+    \]Per un compatto nella forma $ \{r \in [r_1,r_2]\} $, con $ r_1<1<r_2 $, questo teorema garantisce l'esistenza di un ciclo limite, come trovato ``a mano''.
+}
+\osservazione{
+    Questo teorema è peculiare per la dimensione due.
+}

@@ -1,0 +1,192 @@
+\section{Matrice generica}
+\days{23 marzo 2023}
+
+\paragrafo{Matrice $ 2\times 2 $ in forma canonica}{%
+    Consideriamo una matrice $ A \in \R^{2,2} $ con autovalori \emph{non regolari}, scritta in forma canonica: \[
+        A=\begin{pmatrix}
+            \lambda & 1 \\
+            0 & \lambda
+        \end{pmatrix}
+    \]con $\lambda_1=\lambda_2$ e $ \bm{u}=\left(\begin{smallmatrix}
+        1\\0
+    \end{smallmatrix}\right) $. 
+
+    Risolviamo il sistema associato: $ \bm{x}'=A\,\bm{x} $ \[
+        \begin{cases}
+            x'=\lambda\,x+y\\ 
+            y'=\lambda\,y
+        \end{cases}\quad\leadsto\quad \begin{cases}
+            x'=\lambda\,x + c_2\,e^{\lambda \,t}\\ 
+            y(t)= c_2\,e^{\lambda\,t}
+        \end{cases}
+    \]da cui otteniamo \[
+        \begin{cases}
+            x(t)=(c_1+c_2\,t)\,e^{\lambda\,t}\\ 
+            y(t)= c_2\,e^{\lambda\,t}
+        \end{cases}
+    \]Lo si vuole scrivere in forma matriciale come \[
+        \begin{pmatrix}
+            x(t)\\ y(t)
+        \end{pmatrix} = \parentesi{\Phi(t)\coloneqq}{\begin{pmatrix}
+            e^{\lambda\,t} & t\,e^{\lambda\,t}\\ 
+            0 & e^{\lambda\,t}
+        \end{pmatrix}}\,\begin{pmatrix}
+            c_1\\ c_2
+        \end{pmatrix}
+    \]Poiché $ \Phi(0)=\I_{2}  $, allora $ \Phi $ è la risolvente, e posso scrivere:\[
+        e^{tA} = \begin{pmatrix}
+            e^{\lambda\,t} & t\,e^{\lambda\,t}\\ 
+            0 & e^{\lambda\,t}
+        \end{pmatrix}
+    \]\todo{Manca il diagramma di fase}%TODO aggiungere diagramma di fase
+}{}{}
+\teorema{dididififoisdisodpokspteoreminonoinoindkjnfjscdoij}{
+    Sia $ A \in \R^{2,2} $ con autovalori \emph{non regolari} qualsiasi e polinomio caratteristico $ p_{A}(t)=(t-\lambda)^{2}  $. Sia $ \bm{u} \in \R^{2} $ l'unico autovettore di $ A $, e $ \bm{v} \in \R^{2} $ tale che \begin{itemize}
+        \item $ \bm{v}\perp \bm{u} $
+        \item $ (A-\lambda\I)\,\bm{v}=\bm{u} $.
+    \end{itemize}
+
+    Allora, le soluzioni di $ \bm{x}'=A\,\bm{x} $ sono nella forma: \[
+        \bm{x}(t) = e^{\lambda\,t} (c_1+c_2\,t) \bm{u}+e^{\lambda\,t}c_2\,\bm{v},\qquad c_1,c_2 \in \R
+    \]
+}
+\dimostrazione{dididififoisdisodpokspteoreminonoinoindkjnfjscdoij}{
+    Si ha che $ \{\bm{u},\bm{v}\} $ sono una base di $ \R^{2} $, dunque necessariamente una qualsiasi funzione deve essere nella forma\[
+        \bm{x}(t)=y_1(t)\,\bm{u}+y_2(t)\,\bm{v}
+    \]Imponiamo che $ \bm{x}(t) $ risolva $ \bm{x}'(t)=A\,\bm{x} $, e determiniamo $ y_1 $ e $ y_2 $. \begin{align*}
+        \bm{x}'(t) &= y_1'(t)\,\bm{u} + y_2'(t) \,\bm{v}\\ 
+        A\,\bm{x}(t) &= y_1(t) A\,\bm{u} + y_2(t) A\,\bm{v}
+    \end{align*}ma $ A\bm{u}=\lambda \bm{u} $, e $ A\bm{v}-\lambda\bm{v}= \bm{u} $, e quindi $ A\bm{v}=\lambda\bm{v}+\bm{u} $\begin{align*}
+        \bm{x}'(t)=A\,\bm{x}(t) &= y_1(t) \lambda \bm{u} + y_2(t)(\lambda\bm{v}+\bm{u})\\ 
+        &= \left(\lambda\,y_1(t)+y_2(t)\right) \,\bm{u} + \lambda\,y_2(t)\,\bm{v}
+    \end{align*}Imponendo l'uguaglianza con $ \bm{x}'(t) $, si ottiene il sistema \[
+        \begin{cases}
+            y_1'=\lambda\,y_1+y_2\\ 
+            y_2'= \lambda\,y_2
+        \end{cases}
+    \]che ha proprio come soluzione \[
+        \begin{cases}
+            y_1=e^{\lambda\,t} (c_1+c_2\,t)\\ 
+            y_2=e^{\lambda\,t}c_2
+        \end{cases}\qedd
+    \]
+}
+
+\teorema{didididiocoijscjkdkjncjdjdkjncjd}{
+    Considero il sistema $ \bm{x}'(t)=A\,\bm{x}(t) $, con $ A \in \R^{n,n} $. Siano \begin{itemize}
+        \item $ \{\lambda_1,\dots, \lambda_{h} \} $ autovalori reali, di molteplicità algebrica, rispettivamente $ m_1,\dots,m_{k}  $; 
+        \item $ \{\mu_1, \overline{\mu}_1,\dots,\mu_{k},\overline{\mu}_k \} $ autovalori complessi, $ \mu_{j}, \overline{\mu}_i=a_{j} \pm b_{j}\,i    $, di molteplicità algebrica, rispettivamente $ n_1,\dots,n_{k}  $
+    \end{itemize}tali per cui \[
+        \sum_{i=1}^{h} m_{i} + 2\,\sum_{i=1}^{k} n_{i} = n   
+    \]
+
+    Per ciascun autovalore, sia $ F $ l'insieme:\begin{align*}
+        F_{\lambda_{i} } &= \left\{t^{j}\, e^{\lambda_{i}\,t } : j=0,\dots, m_{i}-1 \right\} \\ 
+        F_{\mu_{i} } &= \{t^{j}\,e^{a_{i}\,t }\,\cos(b_{i} \,t), t^{j}\,e^{a_{i}\,t }\,\sin(b_{i}\,t ): j=0,\dots,n_{i}-1 \} 
+    \end{align*}e definiamo $ \displaystyle F_{A}=\bigcup_{j} F_{\lambda_{j} }\cup\bigcup_{j} F_{\mu_{j} }       $. 
+
+    Allora \emph{ogni} componente di $ \bm{x}(t) $ è combinazione lineare di elementi di $ F_{A}$.
+}
+\paragrafo{Corollario sulla stabilità dell'origine}{%
+    Considero il sistema $ \bm{x}'(t)=A\,\bm{x}(t) $.\begin{itemize}
+        \item Se tutti gli autovalori di $ A $ hanno parte reale $ <0 $ 
+        
+        $\implies$ $ \bm{0} $ è un punto di equilibrio asintoticamente stabile. 
+        \item Se esiste almeno un autovalore di $A$ con parte reale $ >0 $ 
+        
+        $\implies$ $ \bm{0} $ è un punto di equilibrio \emph{instabile}.
+        \item Se tutti gli autovalori di $ A $ hanno parte reale $ \le 0 $ 
+        
+        $\implies$ $ \bm{0} $ è un punto di equilibrio stabile.
+    \end{itemize} 
+}{}{}
+\esercizio{
+    Stabilire per quali $ a \in \R $ tutte le soluzioni del seguente sistema si mantengono limitate. \[
+        \begin{cases}
+            x_1'= a\,x_2+x_4\\
+            x_2' = -x_1\\
+            x_3' =x_4\\
+            x_4'=-a\,x_1-x_3
+        \end{cases}
+    \]
+}{
+    Scriviamo la matrice \[
+        A=\begin{pmatrix}
+            0 & a & 0 & 1\\ 
+            -1 & 0 & 0 & 0\\ 
+            0 & 0 & 0 & 1\\ 
+            -a & 0 & -1 & 0
+        \end{pmatrix}
+    \]Essendo le soluzioni combinazioni lineari di elementi di $ F_{A}$, le uniche funzioni ammesse per avere limitatezza sono seni e coseni. 
+    
+    $\implies$ imponiamo che gli autovalori di $ A $ siano tutti in $ i\R $, e che siano \emph{semplici} (ovvero con molteplicità algebrica 1). 
+
+
+    Calcolo il polinomio caratteristico: \[
+        p_{A}(t)= \dots = t^{4}+(2a+1)t^{2} + a 
+    \]da cui ricavo che, per $ \lambda $ autovalore: \[
+        \lambda_{\pm}^{2} = \frac{-(2a+1)\pm\sqrt{(2a+1)^{2}-4a}}{2}=\frac{-(2a+1)\pm \sqrt{4a^{2}+1}}{2}
+    \]Per avere autovalori immaginari puri, voglio che siano entrambi \emph{strettamente} minori di $ 0 $. 
+
+    Noto che $ \lambda_{-}^{2}< \lambda_{+}^{2}$, dunque impongo soltanto $ \lambda_{+}^{2}<0$ $ \iff $ \begin{align*}
+        -(2a+1)+\sqrt{4a^{2}+1}&<0\\ 
+        \sqrt{4a^{2}+1}&<0
+    \end{align*}da cui ricavo il sistema: \[
+        \begin{cases}
+            2a+1>0\\ 
+            4a^{2}+1<(2a+1)^{2}
+        \end{cases}\quad \leadsto \quad \begin{cases}
+            a>-1/2\\ 
+            a>0
+        \end{cases}
+    \] 
+    
+    $\implies$ se $ a>0 $ ho quattro (e sono certo essere distinti, poiché la radice quadrata è iniettiva) autovalori in $ i\R $.
+}
+
+\section{Metodo di linearizzazione}
+
+{\renewcommand{\Re}{\operatorname{Re}}
+    \paragrafo{Classificazione di un punto di equilibrio per un sistema lineare}{%
+    Per il sistema $ \bm{x}'=A\,\bm{x} $, l'origine è un punto di equilibrio: \begin{itemize}
+        \item \emph{iperbolico}:\begin{itemize}
+            \item \emph{attrattore}: se $ \Re \lambda<0 $ per ogni autovalore $ \lambda $ di $ A $;
+            \item \emph{repulsore}: se $ \Re\lambda>0 $ per ogni autovalore $ \lambda $ di $ A $;
+            \item \emph{sella}: se tutti gli autovalori di $ A $ hanno $ \Re\lambda\neq 0 $ e c'è almeno una coppia di autovalori di segno opposto;
+        \end{itemize}
+        \item \emph{centro}: se esiste almeno un autovalore $ \lambda $ di $ A $ nullo o con $ \Re \lambda = 0 $.
+    \end{itemize}
+}{}{}}
+\teorema[Teorema di Hartman-Grobman]{duuudiuhciuhduchdiuhcuducud}{
+    Se $ \bm{x}^{*} $ è un equilibrio dell'equazione autonoma $ \bm{x}'=\bm{f}(\bm{x}) $ e nel sistema linearizzato \[
+        \bm{x}'=\parentesi{A}{J_{\bm{f}}(\bm{x}^{*}) }\,\bm{x}
+    \]l'origine è iperbolica, allora la stabilità di $ \bm{x}^{*} $ come equilibrio di $ \bm{x}'=\bm{f}(\bm{x}) $ è la stessa di quella dell'origine per il sistema linearizzato.
+}
+\esempio{
+    Considero il sistema: \[
+        \begin{cases}
+            x'=-x+x^{3}\\ 
+            y'=-2y
+        \end{cases}
+    \]i cui equilibri sono \[
+        (0,0),\,(1,0),\,(-1,0)
+    \]
+    
+    Calcoliamo la matrice Jacobiana in un punto generico: \[
+        J_{\bm{f}}(x,y)=\begin{pmatrix}
+            -1+3x^{2} & 0\\ 
+            0 & -2
+        \end{pmatrix} 
+    \]e quindi: \begin{itemize}
+        \item $ J_{\bm{f}}(0,0)=\left(\begin{smallmatrix}
+            -1 & 0\\ 0 & -2
+        \end{smallmatrix}\right)  $ che ha due autovalori reali negativi 
+        
+        $\implies$ per il teorema di Hartman-Grobman $ (0,0) $ è asintoticamente stabile;
+        \item $ J_{\bm{f}}(\pm 1,0)=\left(\begin{smallmatrix}
+            2 & 0\\ 0 & 2
+        \end{smallmatrix}\right) $ il cui punto di equilibrio è sella 
+        
+        $\implies$ per il teorema di Hartman-Grobman $ (\pm 1,0) $ sono instabili.
+    \end{itemize}
+}

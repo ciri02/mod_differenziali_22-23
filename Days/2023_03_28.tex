@@ -1,0 +1,137 @@
+\days{28 marzo 2023}
+\osservazione{
+    Il metodo di linearizzazione: \begin{itemize}
+        \item è un metodo locale e non globale;
+        \item fornisce la stabilità senza conoscere un ritratto di fase;
+        \item non funziona quando la parte reale degli autovalori è nulla.
+    \end{itemize}
+}
+{\chapter{Metodo diretto di Lyapunov per lo studio della stabilità degli equilibri}\stepcounter{capitoloeccolo}
+
+\paragrafo{Ipotesi}{%
+    \begin{itemize}
+        \item Sia $ \bm{x}'=\bm{f}(\bm{x}) $, $ \bm{f} \in  C^{1}(\Omega) $. $ \Omega \subseteq \R^{n} $ aperto. 
+        \item $ \bm{p} \in \Omega $ tale che $ \bm{f}(\bm{p})=\bm{0} $ (equilibrio).
+        \item $ V:B_{r}(\bm{p})\longrightarrow \R  $, con $ r>0 $ e $ B_{r}(\bm{p}) \subseteq \Omega  $, $ V $ di classe $ C^{1} $.
+    \end{itemize}
+}{dkjnckjnskjndkjnckjnskjnckjndkjnckjndkjncjndkjncjdjckjnskjncjdjskjncjdjskjn}{}
+\newcommand{\ipotesi}{\framref{dkjnckjnskjndkjnckjnskjnckjndkjnckjndkjncjndkjncjdjckjnskjncjdjskjncjdjskjn}}
+\paragrafo{Idea di base}{%
+    Sotto le ipotesi \ipotesi, se troviamo una funzione $ V $ tale che
+    \begin{itemize}
+        \item $ V $ sia positiva in un intorno di $ \bm{p} $ e nulla in $ \bm{p} $;
+        \item $ V $ sia decrescente lungo le traiettorie vicino a $ \bm{p} $.
+    \end{itemize}Allora $ \bm{p} $ è stabile o asintoticamente stabile.
+}{}{}
+\paragrafo{Monotonia di $ V $}{%
+    Sotto le ipotesi \ipotesi, supponiamo che $ \bm{x}=\bm{x}(t) $ è una soluzione dell'equazione differenziale. 
+    \begin{itemize}
+        \item Valutiamo $ V $ lungo $ \bm{x}(t) $, ovvero $ V\left(\bm{x}(t)\right) $.
+        \item Ne calcoliamo la monotonia in $ t $: \[
+            \od{}{t}V\left(\bm{x}(t)\right) =: \dot{V}\left(\bm{x}(t)\right)
+        \]Dunque: \begin{align*}
+            \dot{V}\left(\bm{x}(t)\right) &= \scalare{\nabla V\left(\bm{x}(t)\right)}{\bm{x}'(t)}\\ 
+            &= \scalare{\nabla V\left(\bm{x}(t)\right)}{\bm{f}\left(\bm{x}(t)\right)}
+        \end{align*}e quindi \begin{align*}
+        \dot{V}:B_{r} (\bm{p}) &\longrightarrow \R \\
+        \xi &\longmapsto \scalare{\nabla V (\xi)}{\bm{f}(\xi)}
+        \end{align*}
+    \end{itemize}
+    
+    Poiché sia $ V $ che $ \bm{f} $ sono di classe $ C^{1} $, allora anche $ \nabla V $ è continua, e quindi $ \dot{V} $ è continua. 
+
+    Questa è la \emph{derivata totale di $ V $ rispetto al campo $ \bm{f} $.}
+}{}{}
+\teorema[Teorema di Lyapunov]{dididicoijcoijdoijcoijcoijsoij}{
+    Supponiamo le ipotesi \ipotesi.
+
+    ($ H_1 $): \parbox{16em}{\begin{itemize}
+            \item $ V $ è definita positiva in $ \bm{p} $;
+            \item $ \dot{V} $ è semi definita negativa in $ \bm{p} $
+        \end{itemize}} \hspace{2em}$\implies$ $ \bm{p} $ è stabile.\vspace{1em} 
+
+    ($ H_2 $): \parbox{14em}{\begin{itemize}
+            \item $ V $ è definita positiva in $ \bm{p} $;
+            \item $ \dot{V} $ è definita negativa in $ \bm{p} $.
+        \end{itemize}}\hspace{2em}$\implies$ \parbox{7em}{$ \bm{p} $ è asintoticamente stabile. }\vspace{1em}
+
+    ($ H_3 $) \parbox{17em}{\begin{itemize}
+            \item $ V(\bm{p}) =0 $;
+            \item $ \forall\, \varepsilon \in (0,r) $,\\ $ \exists\, \bm{x}_{\epsilon} \in B_{ \varepsilon}(\bm{p})  $ tale che $ V(\bm{x}_{ \varepsilon})>0 $;
+            \item $ \dot{V} $ è definita positiva in $ \bm{p} $.
+        \end{itemize}}\hspace{2em} $\implies$ $ \bm{p} $ è instabile.
+}
+\osservazione{
+    Questo metodo: \begin{itemize}
+        \item è locale;
+        \item determina la stabilità semplice;
+        \item non stabilisce come determinare la funzione $ V $; 
+        \item non determina necessariamente l'asintotica stabilità di alcuni punti di equilibrio stabili.
+    \end{itemize}
+}
+\definizione{
+    Una funzione $ V $ che soddisfa ($ H_1 $) o ($ H_2 $) o ($ H_3 $) si dice \emph{funzione di Lyapunov}.
+}
+\dimostrazione{dididicoijcoijdoijcoijcoijsoij}{
+    Dimostriamo solo la prima parte. La tesi è la stabilità di $ \bm{p} $, ovvero: $ \forall\, \varepsilon>0 $, $ \exists\, \delta = \delta( \varepsilon)>0 $ tale che, se $ \bm{q} \in B_{\delta}(\bm{p}) $, la soluzione $ \bm{\psi}_{\bm{q}}(t) $ del sistema \[
+            \begin{cases*}
+                \bm{x}'=\bm{f}(\bm{x})\\ 
+                \bm{x}(0)=\bm{q}
+            \end{cases*}
+        \]soddisfi: \begin{itemize}
+            \item $ T_{\max}= + \infty  $;
+            \item $ \exists\, T\ge 0 $ tale che $ \forall\, t > T $, \[
+                \bm{\psi}_{\bm{q}}(t) \in B_{ \varepsilon}(\bm{p}) 
+            \]
+        \end{itemize}
+        
+        Fisso $ \varepsilon< r $, in modo che $ V $ sia definita su $ B_{ \varepsilon}(\bm{p})  $, e definisco \[
+            m_{ \varepsilon} = \min_{x \in \partial B_{ \varepsilon}(\bm{p}) } V(x)>0  
+        \]poiché $ V $ è definita positiva. 
+
+        $ V(\bm{p})=0 $, e inoltre $ V $ è continua 
+        
+        $\implies$ $ \exists\, \delta \in (0, \varepsilon) $ tale che $ V(x)< \frac{1}{2} m_{ \varepsilon}  $, $ \forall\, \bm{x} \in B_{ \delta}(\bm{p})  $. 
+
+        Dimostro che questo $ \delta $ soddisfa la condizione di stabilità.
+
+        Per assurdo, supponiamo che $ \exists\, \bm{q} \in B_{\delta}(\bm{p}) $ tale la soluzione $ \bm{\psi}_{\bm{q}}(t)$ di \[
+            \begin{cases}
+                \bm{x}'=\bm{f}(\bm{x})\\ 
+                \bm{x}(0)=\bm{q}
+            \end{cases}
+        \]per qualche $\tau$ sia \[
+            \norma{\bm{\psi}_{\bm{q}}(\tau)- \bm{p}} = \varepsilon
+        \]e che $ \norma{\bm{\psi}_{\bm{q}}(\tau)- \bm{p}} < \varepsilon $, $ \forall\, t \in [0,\tau) $. 
+
+        Per ipotesi $ \dot{V}(\bm{x}) $ è semidefinita negativa, cioè $ V $ decresce lungo le soluzioni: \[
+            m_{ \varepsilon} \le V\left(\bm{\psi}_{\bm{q}}(\tau)\right) \le V(\bm{q}) = V\left(\bm{\psi}_{\bm{q}}(\tau)\right) < \frac{m_{ \varepsilon} }{2}.
+        \]Assurdo.\qed 
+}
+\paragrafo{Corollario - Applicazione ai sistemi $ \ddot{\bm{x}}=-\nabla U (\bm{x})$}{%
+    Sia\\ $U: \Omega \subseteq \R^{n}\longrightarrow \R $, $ \Omega $ aperto e $ \bm{p} \in  \Omega$- \begin{itemize}
+        \item $ U \in C^{1} (\Omega)$;
+        \item $ \bm{p} $ sia un minimo stretto di $ U $. 
+    \end{itemize} 
+
+    Allora $ (\bm{p},0) $ è un punto di equilibrio stabile per \[
+        \begin{cases}
+            \bm{x}'=\bm{y}\\ 
+            \bm{y}' = -\nabla U(\bm{x})
+        \end{cases}
+    \]
+}{dkjnckjnskjnckjndjdjjjdjjdjdjcjdjcjsoijcoij}{}
+\dimframmento{dkjnckjnskjnckjndjdjjjdjjdjdjcjdjcjsoijcoij}{
+    Considero $ V(\bm{x},\bm{y}) $, \[
+        V(\bm{x},\bm{y}) = \frac{1}{2}\norma{\bm{y}}^{2} + U(\bm{x})-U(\bm{p})
+    \]Si ha che \begin{itemize}
+        \item $ V(\bm{p},0) = 0 $;
+        \item $ V(\bm{x},\bm{y})>0 $ in un intorno di $ (\bm{p},0) $, poiché $ U(\bm{x})>U(\bm{p}) $ per ipotesi;
+        \item $ \dot{V}(\bm{x},\bm{y}) = 0 $.
+    \end{itemize} 
+    
+    $\implies$ $ V $ soddisfa le ipotesi ($ H_1 $) 
+    
+    $\implies$ $ (\bm{p},0) $ è stabile.\qed
+}
+}

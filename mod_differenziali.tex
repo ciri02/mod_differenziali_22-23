@@ -1,0 +1,81 @@
+\documentclass[11pt, titlepage, twoside, a4paper]{book}
+
+\input{../unito_ii.tex}
+
+\hypersetup{
+    pdfauthor={Davide Peccioli},
+    pdftitle={Modelli Differenziali},
+}
+
+% \geometry{showframe}
+\usetikzlibrary{external}
+\tikzexternalize[prefix=figures/] 
+
+\bibliography{mod_diff_biblio}
+
+\begin{document}
+
+\frontmatter
+% \layout
+
+\begin{titlepage}
+\null
+\vfill
+\begin{center}
+{\Huge \textbf{Modelli Differenziali}}\\
+\vspace{1em}
+{\large Davide Peccioli}\\
+\vspace{0.6em}
+{\large Anno accademico 2022-2023}
+\vfill
+Università degli studi di Torino
+\end{center}
+\end{titlepage}
+{\pagestyle{empty}
+\null\cleardoublepage}
+
+
+\fancyhead{} % cancella tutti i campi
+\fancyfoot{}
+\fancyhead[RE]{Modelli Differenziali}
+\fancyhead[LO]{Indice}
+\fancyfoot[C]{\thepage}
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0pt}
+\pagestyle{fancy}
+
+\tableofcontents\cleardoublepage
+
+\hdrnew{Modelli Differenziali}
+
+\mainmatter
+
+% \part{Complementi di Teoria delle E.D.O.}
+
+\input{Days/2023_02_23.tex} % Lezione 1 - Ripasso EDO
+\input{Days/2023_03_09.tex} % Lezione 5 - Teo di dipendenza continua
+\input{Days/2023_03_14.tex} % Lezione 6 - Teo di dipendenza continua
+\input{Days/2023_02_23_pt2.tex} % Lezione 1 - Equazioni autonome
+\input{Days/2023_02_28.tex} % Lezione 2
+\input{Days/2023_03_02.tex} % Lezione 3
+\input{Days/2023_03_07.tex} % Lezione 4
+\input{Days/2023_03_14_pt2.tex} % Lezione 6
+\input{Days/2023_03_16.tex} % Lezione 7
+\input{Days/2023_03_21.tex} % Lezione 8
+\input{Days/2023_03_23.tex} % Lezione 9
+\input{Days/2023_03_28.tex} % Lezione 10
+\input{Days/2023_03_30.tex} % Lezione 11
+\input{Days/2023_04_04.tex} % Lezione 12
+
+% \part{Introduzione alle tecniche geometriche per lo studio dei modelli differenziali in fisica matematica}
+
+% \input{Days/2023_04_13.tex} % Lezione 13
+% \input{Days/2023_04_18.tex} % Lezione 14
+
+
+\backmatter
+
+\cleardoublepage\normalem
+\printbibliography
+
+\end{document}

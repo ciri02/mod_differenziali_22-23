@@ -1,0 +1,212 @@
+\days{16 marzo 2023}
+
+\paragrafo{Ripasso}{%
+    Un \emph{sistema lineare di equazioni differenziali ordinarie} è un sistema della forma \[
+        \bm{x}'=A(t)\bm{x}+\bm{b}(t)
+    \]dove \[
+        \bm{x}=\bm{x}(t)=\begin{bmatrix}
+            x_1(t)\\ 
+            \vdots\\ 
+            x_{n}(t) 
+        \end{bmatrix}, \quad \bm{b}(t)=\begin{bmatrix}
+            b_1(t)\\ 
+            \vdots\\ 
+            b_{n}(t) 
+        \end{bmatrix},\quad A(t)=\begin{bmatrix}
+            a_{11}(t) & \dots & a_{1n}(t)\\ 
+            \vdots & \ddots & \vdots\\ 
+            a_{n1}(t)  & \dots & a_{nn}(t) 
+        \end{bmatrix}.
+    \]e tutte le funzioni sono continue su un intervallo aperto $ I \subseteq \R $. 
+    
+    Se $ b_1,\dots,b_{n}  $ sono tutte nulle, il sistema si dice \emph{omogeneo}.
+}{}{}
+\paragrafo{Caso monodimensionale}{%
+    Ponendo $ f(t,x)=A(t)\,x + b(t) $, $ f \in C^{1}(I\times \R) $: per ogni condizione iniziale $ (t_0,x_0) \in I\times \R $ il problema di Cauchy associato al sistema ammette un'unica soluzione locale. 
+
+    Essendo \[
+        \pd{f}{x}(t,x)=A(t)
+    \]continua su $ I $, abbiamo che su ogni striscia $ [a,b]\times \R \subseteq I\times \R$ tale funzione è limitata, e deduciamo che ogni problema di Cauchy associato al sistema ammette un'unica soluzione definita sull'intero intervallo $ I $.
+}{}{}
+\paragrafo{Alcuni Risultati}{%
+    Posto \[
+        S_{\bm{b}}\coloneqq \{\text{soluzioni di } \bm{x}'=A(t)\bm{x}+\bm{b}(t)\} 
+    \]valgono i seguenti risultati. \begin{itemize}
+        \item \emph{Principio di Sovrapposizione}. Se $ \bm{x}_1 \in S_{\bm{b}_1}  $ e $ \bm{x}_2 \in S_{\bm{b}_2} $, allora \[
+            \bm{x}_1+\bm{x}_2 \in S_{\bm{b}_1+\bm{b}_2} 
+        \]
+        \item \emph{Soluzioni di un sistema omogeneo}. $ S_{\bm{0}}  $ è isomorfo a $ \R^{n} $. 
+        \item \emph{Soluzioni di un sistema non omogeneo}. Se $ \bm{x}_P $ risolve $ \bm{x}'=A(t)\,\bm{x}+\bm{b}(t) $, allora \[
+            S_{\bm{b}}=\{\bm{x}_0+\bm{x}_P: \bm{x}_0 \in S_{\bm{0}} \} 
+        \]
+        \item \emph{Lemma}. Siano $ \bm{y}_1,\dots,\bm{y}_n $ delle $ n $ soluzioni del problema omogenero $ \bm{x}'=A(t)\,\bm{x} $. Allora $ \bm{y}_1,\dots,\bm{y}_n $ sono funzioni linearmente indipendente se e solo se esiste $ t_0 \in I$ tale che i vettori \[
+            \bm{y}_1(t_0),\dots,\bm{y}_n(t_0)
+        \]sono linearmente indipendenti in $ \R^{n} $.
+    \end{itemize}
+}{}{}
+\paragrafo{Matrice Wronskiana}{%
+    Se $ \bm{\varphi}_1,\dots,\bm{\varphi}_n $ sono $ n $ soluzioni linearmente indipendenti del sistema omogenero $ \bm{x}'=A(t) \, \bm{x}$, allora $ \{\bm{\varphi}_1,\dots,\bm{\varphi}_n\} $ si dice \emph{insieme fondamentale}. 
+
+    La matrice \[
+        W(t)=\begin{bmatrix}
+            \bm{\varphi}_1 & \dots & \bm{\varphi}_n
+        \end{bmatrix}
+    \]si dice \emph{matrice wronskiana}.
+
+    Si ha che $ \displaystyle S_{\bm{0}} = \{W(t)\,\bm{c}: \bm{c} \in \R^{n}\} $. Per selezionare in $ S_{\bm{0}}  $ la soluzione di \[
+        \begin{cases}
+            \bm{x}'=A(t)\,\bm{x}\\ 
+            \bm{x}(t_0)=\bm{x}_0
+        \end{cases}
+    \]imponiamo $ W(t_0)\,\bm{c} = \bm{x}_0 $. Essendo le colonne di $ W(t_0) $ linearmente indipendenti, $ W(t_0) $ è invertibile e $ \bm{c}=\left[W(t_0)\right]^{-1}\,\bm{x}_0 $. La soluzione dunque è \[
+        \bm{x}(t)=W(t)\,\left[W(t_0)\right]^{-1}\,\bm{x}_0
+    \]
+}{}{}
+\paragrafo{Matrice risolvente}{%
+    Se $ W $ è una matrice wronskiana e se, per qualche $ t_0 \in I$, si ha $ W(t_0)=\id_{n}  $, allora $ W $ viene detta \emph{matrice risolvente} o \emph{di transizione} o \emph{di monodromia}. 
+
+    Se $ W(t) $ è una matrice wronskiana per \[
+        \begin{cases}
+            \bm{x}'=A(t)\,\bm{x}\\ 
+            \bm{x}(t_0)=\bm{x}_0
+        \end{cases}
+    \]allora \[
+        \Phi(t)=W(t)\,\left[W(t_0)\right]^{-1}
+    \]è di monodromia.
+}{}{}
+\paragrafo{Equazioni differenziali lineari di grado $ n $}{%
+    Consideriamo l'equazione differenziale lineare \[
+        y^{(n)}(t)=a_{n-1}(t)\,y^{(n-1)}(t)+ a_{n-2}(t)\,y^{(n-2)}(t) + \dots+ a_0(t)\,y(t) + b(t).
+    \]Supponiamo che tutte le $ a_{i}  $ e $ b $ siano continue su $ I \subseteq \R $ intervallo. 
+
+    Definendo \[
+        x_1(t)=y(t), \quad x_2(t)=y'(t), \quad\dots,\quad x_{n}(t)=y^{(n-1)}(t) 
+    \]otteniamo il sistema lineare del primo ordine $ \bm{x}'=A(t)\,\bm{x}+\bm{B}(t) $ con \[
+        A(t)=\begin{bmatrix}
+            0 & 1 & 0 & \dots & 0\\ 
+            0 & 0 & 1 & \dots & 0\\ 
+            \vdots\\ 
+            0 & & & & 1\\ 
+            a_0(t) & a_1(t) & \dots & a_{n-1}(t) 
+        \end{bmatrix},\quad \bm{B}(t)=\begin{bmatrix}
+            0\\ 
+            0\\ 
+            \vdots\\ 
+            0\\ 
+            b(t)
+        \end{bmatrix}
+    \]
+}{}{}
+\paragrafo{Obiettivo}{%
+    L'obiettivo è risolvere l'equazione \[
+        \bm{x}'=A\,\bm{x},\qquad A \in \R^{n,n}, \bm{x} \in \R^{n}
+    \]L'esistenza delle soluzioni è garantita su tutto $ \R $. 
+
+    Per gradi:\begin{enumerate}
+        \item $ A $ diagonale;
+        \item $ A $ diagonalizzabile;
+        \item $ A $ con autovalori in $ \C $, tutti autovalori regolari\footnote{Un autovalore è regolare se la molteplicità algebrica e geometrica coincidono};
+        \item caso generale.
+    \end{enumerate}
+}{}{}
+
+\osservazione{
+    Per una equazione nella forma $ \bm{x}'=A\,\bm{x}$, $A \in \R^{n,n} $, $ \bm{x}=\bm{0} $ è sempre soluzione (e quindi è equilibrio).
+
+    Ogni punto di $ \ker A $ è un punto di equilibrio.
+}
+
+\section{Matrice diagonale}
+
+\paragrafo{Risoluzione generica}{%
+    Il sistema $ \bm{x}'=A\,\bm{x} $, $ A \in \R^{n,n} $, \[
+        A=\begin{pmatrix}
+            \lambda_1\\ 
+            & \lambda_2\\ 
+            & & \lambda 3\\ 
+            & & & \ddots\\ 
+            & & & & \lambda_{n} 
+        \end{pmatrix}
+    \]diventa: \[
+        \begin{cases}
+            x_1'(t)=\lambda_1\,x_1(t) \\
+            x_2'(t)=\lambda_2\,x_2(t) \\
+            \vdots
+        \end{cases}
+    \] 
+    
+    $\implies$ $ \displaystyle x_{i}(t) = c_{i}\,e^{\lambda_{i}\,t }   $ per ogni $ i=1,\dots,m $, dove $ c_{i}  $ è una costante arbitraria. 
+    
+    $\implies$ $ \displaystyle \bm{x}(t) = \parentesi{W(t)}{\begin{pmatrix}
+        e^{t\,\lambda_1}\\ 
+            & e^{t\,\lambda_2}\\ 
+            & & e^{t\,\lambda 3}\\ 
+            & & & \ddots\\ 
+            & & & & e^{t\,\lambda_{n} }
+    \end{pmatrix}}\begin{pmatrix}
+        c_1\\ \vdots\\ c_{n} 
+    \end{pmatrix} $
+
+    In questo caso $ W(t) $ è anche di monodromia.
+}{}{}
+\paragrafo{Ritratto di fase per $ n=2 $}{%
+    Siamo nel caso \[
+        A=\begin{pmatrix}
+            \lambda_1 & 0\\ 
+            0 & \lambda_2
+        \end{pmatrix}\,\leadsto\quad \begin{cases}
+            x_1(t)= c_1\,e^{\lambda_1\,t}\\ 
+            x_2(t)= c_2\,e^{\lambda_2\,t}
+        \end{cases}
+    \]\begin{itemize}
+        \item Supponiamo che $ \lambda_1 \cdot \lambda_2\neq 0 $. L'equazione delle orbite è \[
+            x_2=c\,x_1^{\lambda_2/\lambda_1}
+        \]\begin{itemize}
+            \item Se $ \lambda=\lambda_1=\lambda_2 $, allora le orbite sono di equazione $ \displaystyle x_2=c\,x_1 $: sono tutte rette. In particolare, tutte le rette passanti per l'origine sono orbite, \emph{anche gli assi}. 
+            
+            Per stabilire il verso di percorrenza delle orbite, si studia nuovamente il sistema  \[
+                \begin{cases}
+                    x_1(t)= c_1\,e^{\lambda\,t}\\ 
+                    x_2(t)= c_2\,e^{\lambda\,t}
+                \end{cases}
+            \]si ha che \begin{itemize}
+                \item se $\lambda>0$, $ \norma{\bm{x}(t)} \displaystyle \xrightarrow[t\to \infty]{}  + \infty  $, e quindi le semirette vengono percorse verso l'esterno;
+                \item se $\lambda<0$, $ \norma{\bm{x}(t)} \xrightarrow[t\to \infty]{} 0$, e quindi le semirette vengono percorse verso l'interno.
+            \end{itemize} 
+            \item Consideriamo $ \lambda_1\neq \lambda_2 $, ma di segno concorde $ \leadsto \lambda_1 \cdot \lambda_2 > 0$. \begin{itemize}
+                \item Se $ \lambda_2/\lambda_1>1 $ e sono entrambe positive, le orbite sono \emph{uscenti} e tangenti a $ x_1 $;
+                \item Se $ \lambda_2/\lambda_1>1 $ e sono entrambe negative, le orbite sono \emph{entranti} e tangenti a $ x_1 $;
+                \item se $ \lambda_2/\lambda_1<1 $ e sono entrambe positive, le orbite sono \emph{uscenti} e tangenti a $ x_2 $
+                \item se $ \lambda_2/\lambda_1<1 $ e sono entrambe negative, le orbite sono \emph{entranti} e tangenti a $ x_2 $
+            \end{itemize}
+            \item Consideriamo $\lambda_1\neq \lambda_2$, ma di segno discorde $ \leadsto $ $\lambda_1 \cdot \lambda_2<0$. 
+            
+            In questo caso l'origine si chiama \emph{sella}, e si ha che \[
+                x_2= c\,x_1^{\lambda_2/\lambda_1}.
+            \]Essendo $ \lambda_2/\lambda_1<0 $, le orbite sono quelle di equazione $ y=c\,x^{\beta} $, eventualmente simmetrizzate rispetto all'asse delle $ y $.
+        \end{itemize}
+        \item Se $ \lambda_1 \cdot \lambda_2 = 0 $, suppongo che uno $\lambda_1 \neq 0$ (se fossero entrambi nulli, allora tutti i punti di $ \R^{2} $ sarebbero di equilibrio) \[
+            \begin{cases}
+                x_1'=\lambda\,x_1\\ 
+                x_2'=0
+            \end{cases}\,\leadsto\quad \begin{cases}
+                x_1(t)=c_1\,e^{\lambda_1\,t}\\ 
+                x_2\equiv c_2
+            \end{cases}
+        \]Dunque, quando $ c_1=0 $ ottengo infiniti punti di equilibrio, in quanto \[
+            A=\begin{pmatrix}
+                \lambda_1 & 0 \\ 
+                 0 & 0
+            \end{pmatrix}
+        \]ha come nucleo tutto l'asse $ x_2 $. 
+
+        Inoltre, si ha che se \begin{itemize}
+            \item $\lambda_1>0$: tutti gli equilibri sono instabili;
+            \item $\lambda_1<0$: tutti gli equilibri sono stabili, non asintotici.
+        \end{itemize}
+    \end{itemize}
+}{}{}
+
+\section{Matrice diagonalizzabile}
+
+\todo{Manca un pezzo}%TODO finire gli appunti

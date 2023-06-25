@@ -1,0 +1,230 @@
+\days{30 marzo 2023}
+\section{Applicazione del metodo di Lyapunov}
+\paragrafo{Come trovare $ V $}{%
+    Per applicare il teorema di Lyapunov è necessario trovare la funzione $ V $. Alcuni candidati possono essere:
+    \begin{itemize}
+        \item la funzione distanza, ad una potenza pari\[
+            V(\bm{x})= \norma{\bm{x}-\bm{p}}^{2k}
+        \]
+        \item combinazioni lineari di potenze pari; ad esempio, in $ \R^{2} $, una espressione nella forma: \[
+            V(x,y)= \alpha x^{2k}+\beta y^{2l}
+        \]
+    \end{itemize}
+}{}{}
+\esempio{%TODO sistemare gli spazi di tutto l'esempio
+    Consideriamo \[
+        \begin{cases}
+            x'=-y-3x^{3}\\ 
+            y'=x^{5}-2y^{3}
+        \end{cases}
+    \]Mostrare che $ (0,0) $ è l'unico equilibrio e che è asintoticamente stabile, sfruttando un'opportuna funzione di Lyapunov della forma \[
+        V(x,y)= \alpha x^{2m}+\beta y^{2n}
+    \]\begin{itemize}
+        \item \emph{Equilibri}: \[
+            \begin{cases}
+                -y-3x^{3}=0\\ 
+                x^{5}-2y^{3}=0
+            \end{cases}\qquad \begin{cases}
+                y=-3x^{3}\\ 
+                x^{5}-2(-3x^{3})^{3}=0
+            \end{cases} 
+        \]Dalla seconda equazione ottengo $ x^{5}\left(1+54x^{4}\right)=0 $, ovvero $ x=0 $ 
+        
+        $\implies$ $ y=0 $
+
+        Dunque l'unico equilibrio è $ (0,0) $. 
+        \item Vogliamo che $ V $ sia definita positiva in $ (0,0) $ e che $ \dot{V} $ sia definita negativa. \begin{itemize}
+            \item $ V(x,y)= \alpha x^{2m}+\beta y^{2n} $ è definita positiva  $ \iff $ $ \alpha,\beta>0 $. 
+            \item $ \displaystyle \dot{V}(x,y)=\pd{V}{x}x'(t)+\pd{V}{y}y'(t) $:\begin{align*}
+                \dot{V}(x,y )&=\alpha\, 2 m\, x^{2m-1}(-y-3x^{3})+\beta\, 2n\, y^{2n-1} (x^{5}-2y^{3})\\ 
+                &= -2\alpha m\, x^{2m-1}y \uline{- 6\alpha m x^{2n+2}}\\ 
+                &\quad +2\beta nx^{5}y^{2n-1}\uline{-4\beta xy^{2n+2}}
+            \end{align*} 
+
+            La parte sottolineata, poiché $ m,n,\alpha,\beta>0 $, è già definita negativa in $ (0,0) $. Richiediamo ora, per esempio, che l'altro pezzo di $ \dot{V} $ sia nullo. In particolare, vorremmo che fossero monomi simili: \[
+            \begin{cases}
+                2m-1=5\\ 
+                2n-1=1
+            \end{cases} \,\implies\,\begin{cases}
+                m=3\\ 
+                n=1
+            \end{cases}
+            \]e dunque \[
+                -6\alpha x^{5}y+2\beta x^{5}y= (-6\alpha +2\beta)x^{5}y=0.
+            \]
+        \end{itemize}
+
+        Dunque, scegliendo $ m=3 , n=1, \beta=3\,\alpha$ si ottiene una funzione che soddisfa tutte le ipotesi.
+    \end{itemize}
+}
+\esempio{
+    Consideriamo il sistema: \[
+        \begin{cases}
+            x'=-x+y-(x+y)(x^{2}+y^{2})\\ 
+            y'=-x+y+(x+y)(x^{2}+y^{2})
+        \end{cases}
+    \]\begin{itemize}
+        \item \emph{Equilibri}: \[
+            \begin{cases}
+                0=-x+y-(x+y)(x^{2}+y^{2})\\ 
+                0=-x+y+(x+y)(x^{2}+y^{2})
+            \end{cases} \,\implies\, \begin{cases}
+                (x+y)(x^{2}+y^{2})=y-x\\ 
+                (x+y)(x^{2}+y^{2})=x-y
+            \end{cases}
+        \] 
+        
+        $\implies$ $ y-x=0 $ e $ x=y $. 
+
+        Sostituendo nella prima equazione, $ (2x)(2x^{2})=0 $ 
+        
+        $\implies$ $ x=0 $ 
+        
+        $\implies$ $ (0,0) $ è l'unico equilibrio. 
+        \item \emph{Linearizzazione}: la matrice associata al sistema linearizzato è \[
+            A=\begin{pmatrix}
+                -1 & 1\\ 
+                -1 & 1
+            \end{pmatrix}
+        \]che ha entrambi gli autovalori nulli: il metodo non funziona. 
+        \item \emph{Lyapunov}\footnote{Suggerimento: utilizzare $ \displaystyle V(x,y)=-\frac{x^{2}}{2}+\frac{y^{2}}{2} $}: osservo che la funzione $ V(x,y) $ suggerita ha una sella in $ (0,0) $, dunque se il metodo di Lyapunov funziona dimostrerà l'instabilità. 
+        
+        Il segno di $ V $ su $ \R^{2} $ è mostrato in figura \ref{fig:graficodiVSegno}
+        \begin{figure}
+            \begin{center}
+                \begin{tikzpicture}
+                    \draw [black, -Latex] (-3,0) -- (3,0);
+                    \draw [black, -Latex] (0,-3) -- (0,3);
+                    \draw [black,, thick] (-3,-3) -- (3,3);
+                    \draw [black,, thick] (3,-3) -- (-3,3);
+                    \node at (3.5,3.3) {$V(x,y)=0$};
+                    \node at (3.5,-3.3) {$V(x,y)=0$};
+                    \fill [pattern=north east lines] (-2.6,-2.6) -- (0,0) -- (2.6,-2.6) -- cycle;
+                    \fill [pattern=north east lines] (-2.6,2.6) -- (0,0) -- (2.6,2.6) -- cycle;
+                    \fill [white!3!black, opacity=0.3] (-2.6,2.6) -- (0,0) -- (-2.6,-2.6) -- cycle; 
+                    \fill [white!3!black, opacity=0.3] (2.6,2.6) -- (0,0) -- (2.6,-2.6) -- cycle;
+                    \node [fill=white] at (1.5,0) {\Huge $-$};
+                    \node [fill=white] at (0,1.5) {\Huge $+$};
+                    \node [fill=white] at (-1.5,0) {\Huge $-$};
+                    \node [fill=white] at (0,-1.5) {\Huge $+$};
+                \end{tikzpicture}
+            \end{center}
+            \caption{Segno su $ \R^{2} $ di $ V(x,y)=-\frac{x^{2}}{2}+\frac{y^{2}}{2} $}\label{fig:graficodiVSegno}
+        \end{figure}
+       
+        In ogni intorno di $ (0,0) $ la funzione $ V $ cambia di segno 
+        
+        $\implies$ $ \exists\, \{(x_{n},y_{n} ) \}_{n \in \N} $ tale che \begin{align*}
+            (x_{n},y_{n}  ) \displaystyle &\xrightarrow{n\to + \infty} \bm{0} \\ 
+            (x_{n},y_{n}  )&\ge 0, \quad\forall\, n
+        \end{align*}
+
+        Verifico ora il segno di $ \dot{V} $: \begin{align*}
+            \dot{V}(x,y) &= \pd{V}{x}\,x' + \pd{V}{y}\,y'\\ 
+            &=-x(-x+y) + y(-x+y)\\&\qquad +x(x+y)(x^{2}+y^{2})+y(x+y)(x^{2}+y^{2})\\ 
+            &= x^{2}-xy-xy+y^{2}+ (x+y)^{2}(x^{2}+y^{2})\ge 0
+        \end{align*}e si annulla \emph{solo} nell'origine. 
+        
+        $\implies$ sono soddisfatte le ipotesi ($ H_3 $) del teorema di Lyapunov.
+    \end{itemize}
+}
+\esercizio{Considero il sistema \[
+    \begin{cases}
+        x'=y\\ 
+        y' =-x^{3}-y
+    \end{cases}
+\]e le funzioni \begin{align*}
+    V_1(x,y)&= x^{2}+y^{2}\\ 
+    V_2(x,y) &= \frac{x^{4}}{4}+\frac{y^{2}}{2}\\ 
+    V_3(x,y) &= \frac{x^{4}}{4}+\frac{y^{2}}{2}+x^{3}y
+\end{align*}
+
+Stabilire se $ V_1,V_2 $ e $ V_3 $ sono funzioni di Lyapunov per il sistema.}{
+    \begin{itemize}
+        \item $ (0,0) $ è l'unico equilibrio. 
+        \item $ V_1(x,y) = x^{2}+y^{2}$ è definita positiva in $ (0,0) $. \begin{align*}
+            \dot{V}_1(x,y) &= \pd{V_1}{x}\,x'+\pd{V_2}{y}\,y'\\ 
+            &= 
+        \end{align*}
+        \todo{Manca la fine dell'esercizio}%TODO finire l'esercizio
+    \end{itemize}
+}
+\osservazione{
+    Il sistema precedente può essere visto come \[
+        x''=-x^{3}-x'
+    \]Se considero solo $ x''=-x^{3} $, posso vederlo nella forma \[
+        x''=-\nabla U(x),\qquad U(x)=\frac{1}{4}x^{4}
+    \]Quindi il termine $ -x' $ è \emph{dissipativo}
+}
+\teorema[Teorema di La Salle-Krasovskii]{dididicoijsidiiccdididiterorfelkddislassalledoijsdoicj}{
+    Sia $ \bm{p} $ un punto di equilibrio stabile per $ \bm{x}'=\bm{f}(\bm{x}) $, e $ V $ una funzione di Lyapunov che soddisfa le ipotesi ($ H_1 $). 
+
+    Sia \[
+        \mathscr{E}=\{\bm{x} \in B_{\bm{r}}(\bm{p}): \dot{V}(\bm{x}) =0 \}.
+    \]Se $ \mathscr{E} $ non contiene orbite complete distinte da $ \{\bm{p}\} $, allora $ \bm{p} $ è asintoticamente stabile.
+}
+\esempio{
+    Se consideriamo \[
+        \begin{cases}
+            x'=y\\ 
+            y'=-x^{3}-y
+        \end{cases}\qquad \begin{aligned}
+            V_2(x,y)&=\frac{1}{4}x^{4}+\frac{1}{2}y^{2}\\ 
+            \dot{V}_2(x,y)&= -y^{2}
+        \end{aligned}
+    \]l'insieme \[
+        \mathscr{E}=\left\{(x,y): -y^{2}=0\right\} =\left\{(x,0): x \in \R\right\}
+    \]Ci chiediamo se questo insieme contiene orbite distinte da $ \bm{p} $. 
+
+    Sostituisco $ y=0 $ nel sistema \[
+        \begin{cases}
+            x'=y\\ 
+            y'=-x^{3}-y
+        \end{cases}\quad \leadsto\quad \begin{cases}
+            x'=0\\ 
+            y'=-x^{3}
+        \end{cases}
+    \] 
+    
+    $\implies$ l'asse $ x $ non contiene orbite distinte da $ \bm{p} $, poiché in ogni punto tranne l'origine l'orbita passante per quel punto è perpendicolare all'asse $ x $.
+}
+\paragrafo{Modello preda-predatore Lodka-Volterra}{%
+    Siano: \begin{itemize}
+        \item $ C(t) $ il numero di prede al tempo $ t $ (dove $ c $ sta per coniglio);
+        \item $ L(t) $ il numero di predatori al tempo $ t $ (dove $ l $ sta per lupo).
+    \end{itemize}
+
+    Supponiamo che entrambe queste popolazioni crescono proporizionalmente a sé stessi: \[
+        \begin{aligned}
+            C'(t)&=c\,C(t)\\ 
+            L'(t) &= l\,L(t)
+        \end{aligned}
+    \]dove $ c,l $ sono tassi di crescita. 
+
+    Consideriamo però dei tassi di crescita sifatti: \[
+        x= \gamma- \delta\,L(t),\qquad l=-\alpha+\beta\,C(t)
+    \]dove $ \alpha,\beta,\delta, \gamma>0 $. 
+
+    Ottengo il modello \[
+        \begin{cases}
+            C'(t) = \left(\gamma- \delta\,L(t)\right)\,C(t)\\ 
+            L'(t)=\left(-\alpha+\beta\,C(t)\right)\,L(t)
+        \end{cases}\qquad \alpha,\beta,\delta, \gamma>0.
+    \]Riscaliamo le variabili, o equivalentemente supponiamo $ \alpha=\beta=\delta= \gamma=1 $: \[
+        \begin{cases}
+            C'=(1-L)\,C\\ 
+            L'=(C-1)\,L
+        \end{cases}
+    \]Ha senso supporre che $ C(t), L(t)>0 $, poiché sono numeri di individui. \begin{itemize}
+        \item \emph{Equilibri}: facilmente si nota che i punti di equilibri sono $ (0,0),(1,1) $. 
+        
+        È interessante notare che due specie in competizione trovano \emph{sempre} un equilibrio, che non prevede l'annichilimento di ambo le specie.
+        \item \emph{Rette invarianti}: sono presenti due rette invarianti: \begin{itemize}
+            \item $ L=0 $, orbita uscente dall'origine; 
+            \item $ C=0 $, orbita entrante nell'origine. 
+            \item \emph{Equazioni delle orbite}: le soluzioni si trovano sugli insiemi di livello della funzione \[
+                g(C,L)= (C-\log C) +(L-\log L)
+            \]
+        \end{itemize}
+    \end{itemize}
+}{}{}

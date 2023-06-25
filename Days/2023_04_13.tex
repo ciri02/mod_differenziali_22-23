@@ -1,0 +1,74 @@
+\chapter{Spazi Affini}\days{13 aprile 2023}
+\definizione{
+    Uno \emph{spazio affine} $ \mathcal{A} $ è una terna $ (\mathcal{A}, E, \bm{\delta}) $, dove $ \mathcal{A} $ è un insieme di punti, $ E $ è uno spazio vettoriale \emph{soggiacente}, $ \bm{\delta} $ è una funzione \[
+        \bm{\delta}: \mathcal{A}\times \mathcal{A} \longrightarrow E
+    \]tali che \begin{enumerate}
+        \item $ \forall\, (P,\bm{v}) \in \mathcal{A}\times E $, $ \exists!\, Q \in \mathcal{A} $ tale che $ \bm{\delta}(P, Q)= \bm{v} $;
+        \item $ \forall\, (P,Q,R) $, $ \bm{\delta}(P,Q)+\bm{\delta}(Q,R)=\bm{\delta}(P,R) $
+    \end{enumerate}
+}
+\notazione{
+    In tutta questa sezione, indicheremo con le lettere in grasseto ($\bm{v}$) i \emph{vettori}, mentre con lettere maiuscole ($P,Q$) i \emph{punti} appartenenti ad $ \mathcal{A} $.
+}
+\definizione{
+    La \emph{dimensione} dello spazio affine $ \mathcal{A}=(\mathcal{A}, E,\bm{\delta}) $ è la dimensione dello spazio vettoriale $ E $.
+}
+\definizione{
+    $ \bm{v} \in E $ si chiama \emph{vettore libero}. 
+
+    Una coppia $ (P,\bm{v}) \in \mathcal{A}\times E $ è un \emph{vettore applicato} in $ P $, ed è in corrispondenza biunivoca con la coppia di punti \[
+        (P,Q) \in \mathcal{A}\times\mathcal{A}
+    \]tale che $ \bm{\delta}(P,Q)=\bm{v} $
+}
+\definizione{
+    $ B \subseteq \mathcal{A} $ è un \emph{sottospazio affine} se \[
+        \bm{\delta}(B\times B) \subseteq E
+    \]
+}
+%TODO manca un pezzo sull'origine fissata.
+\esempio{
+    Un esempio di spazio affine è, fissato $ E $ spazio vettoriale: \[
+        (E,E,\bm{\delta})
+    \]dove $ \bm{\delta} $ è la funzione che ad ogni coppia di vettori ne associa la differenza. 
+}
+\paragrafo{Riferimento cartesiano}{%
+    Un \emph{riferimento cartesiano} è una coppia $ (O,\bm{c}_{\alpha}  ) $, dove $ O $ è l'origine fissata, e $ (\bm{c}_{\alpha} ) = \{\bm{c}_1,\dots,\bm{c}_{n} \} $ è una base dello spazio soggiacente di dimensione $ n $.
+}{}{}
+\osservazione{
+    Vi è una corrispondenza biunivoca, fissato un riferimento cartesiano $ (O,\bm{c}_{\alpha}) $: \begin{align*}
+        \bm{\Phi}:\mathcal{A}\times\mathcal{A}&\longrightarrow \R^{n} \\ 
+        P&\longrightarrow (x^{\alpha})
+    \end{align*}dove, se indico $ \bm{\delta}(O,P) = \bm{OP}$: \[
+        \bm{OP}\underset{\footnotemark}{=} x^{\alpha}\,\bm{c}_{\alpha} = \bm{x},\qquad \bm{x} \in \R^{n}
+    \]\footnotetext{Si è assunta la \emph{convenzione di Einstein sugli indici ripetuti}, per cui, quando compare un indice in alto e uno in basso, si intende la sommatoria sull'indice: \[
+        a^{\alpha}b_{\alpha} \coloneqq \sum_{\alpha}   a_{\alpha}b_{\alpha}
+    \]e l'indice si dice \emph{indice sommato} o \emph{indice muto}.}Si ha quindi che le \[
+        x^{\alpha}: \mathcal{A}\longrightarrow \R
+    \]sono le \emph{coordinate cartesiane} o \emph{affini}.
+}
+\paragrafo{Trasformazioni affini}{%
+    Le trasformazioni affini mandano un riferimento cartesiano un altro: \[
+        (O, \bm{c}_{\alpha})\longmapsto (O', \bm{c}_{\alpha}')
+    \]%TODO manca un pezzo
+}{}{}
+%TODO manca un pezzo 
+\paragrafo{Campi scalari}{%
+    Un \emph{campo scalare} è \[
+        f:\mathcal{A}\longrightarrow \R
+    \]e si ha quindi la funzione \[
+        f \circ \bm{\Phi}^{-1} : \R^{n}\longrightarrow \R
+    \]chiamata \emph{rappresentazione del campo $ f $}.
+}{}{}
+%TODO manca un pezzo
+\paragrafo{Campo Vettoriale}{%
+    Un \emph{campo vettoriale} $ \bm{X} $ su $ \mathcal{A} $ è una mappa \[\begin{aligned}
+        \bm{X}:\mathcal{A}&\longrightarrow \mathcal{A}\times E\\ 
+        P&\longmapsto \bm{X}(P)
+    \end{aligned}\hspace{3em}\bm{X}(P) = X^{\alpha}\bm{c}_{\alpha}.\]
+
+    Vale che \begin{align*}
+        (\bm{X}+\bm{Y})(P)= \bm{X}(P)+\bm{Y}(P)\\ 
+        (a\bm{X})(P)= a\bm{X}(P)
+    \end{align*}e dunque indichiamo con $ \chi(\mathcal{A}) $ l'anello dei campi vettoriali su $ \mathcal{A} $.
+}{}{}
+%TODO manca un pezzo

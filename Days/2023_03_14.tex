@@ -1,0 +1,138 @@
+\days{14 marzo 2023}
+
+\osservazione{
+    Questo teorema si chiama di ``dipendenza continua'' perché la funzione:\begin{align*}
+    N &\longrightarrow \mathscr{C}\left([a,b]; \norma{ \cdot }_{\infty}\right) \\
+    \bm{x} &\longmapsto \bm{u}(t,\bm{x})
+    \end{align*}è continua; infatti, per $ \bm{x}_k\to \overline{\bm{x}}_0 \in N $ le soluzioni corrispondenti convergono uniformemente.
+}
+\section{Equazione alle variazioni}
+\paragrafo{Domanda}{%
+    Ci chiediamo ora se la funzione $ \bm{u}(t,\bm{x}) $ ha regolarità maggiore rispetto a $ \bm{x} $? Se sì, come si comporta la funzione $ \bm{u}_{\bm{x}} (t,\bm{x}) $?
+}{}{}
+%% BEGIN Equazione alle variazioni
+\paragrafo{Equazione alle variazioni}{%
+\[
+    \begin{cases}
+        {u}'=t\,{u}^{2}\\ 
+        {u}(0)={x}
+    \end{cases}\qquad u(t,x) = \frac{2x}{2-t^{2}x}, \quad t \in \left(-\sqrt{\frac{2}{x}},\sqrt{\frac{2}{x}}\right)
+\]$u(t,x)$ la interpretiamo come funzione di due variabili $ t $ e $ x $. \begin{align*}
+    u_{t}(t,x)&=\frac{\partial}{\partial t} u(t,x) = \cdots = t\,u^{2}(t,x)\\[3ex]
+    u_{x}(t,x)&=\frac{\partial}{\partial x} u(t,x) = \frac{\partial}{\partial x}\left(\frac{2x}{2-t^{2}x}\right)\\[2ex] 
+    &= \frac{4-\cancel{2t^{2}x}-\cancel{2x(-t^{2})}}{(2-t^{2}x)^{2}}= \frac{4}{(2-t^{2}x)^{2}}
+\end{align*}Noto che la soluzione è $ C^{2} $: calcolo del derivate parziali seconde: \begin{align*}
+    \frac{\partial}{\partial t} u_{x}(t,x) &= \frac{\partial}{\partial x} u_{t}(t,x)\\[2ex]
+    &= t \cdot 2u(t,x) \cdot u_{x}(t,x) 
+\end{align*}Valutiamo tutto in $ x = x_0 $, poniamo $ v(t)\coloneqq u_{x}(t,x_0)$. Si ha che \[
+    \frac{d}{dt} v(t)= 2t\,u(t,x_0)\,v(t)
+\]ovvero \[
+    v'(t)=g(t)\,v(t),\qquad g(t) = 2t\,u(t,x_0)
+\]La funzione $ v(t) $ risolve un'equazione \emph{lineare} che si chiama \emph{equazione alle variazioni} dove \[
+    g(t)=\frac{\partial}{\partial u}\left[f(t,u)\right]_{u=u(t,x_0)}.
+\]
+}{daoijfdaoijcdiiididiidiidii}{}
+\paragrafo{Generalizzazione}{%
+    \begin{itemize}
+        \item Sia $ \Omega \subseteq \R^{2} $, $ f:\Omega \to \R $, $ f \in C^{1}(\Omega) $.
+        \item Sia $ (t_0,x_0) \in \Omega $, $ u(t,x_0) $ soluzione di \[
+            \begin{cases}
+                u'(t) = f\left(t,u(t)\right)\\ 
+                u(t_0)=x_0
+            \end{cases}
+        \]e sia $ [a,b] \subseteq I_{\max}  $, dove $ I_{\max}  $ è l'intervallo massimale di $ u(t,x_0) $
+        \item Se $ N $ è intorno di $ x_0 $: $ \forall\, x \in N $, l'unica soluzione $ u(t,x) $ di \[
+            \begin{cases}
+                u'(t) = f\left(t,u(t)\right)\\ 
+                u(t_0)=x
+            \end{cases}
+        \]è definita su tutto $ [a,b] $
+    \end{itemize}Sono nella situazione in cui vale: \begin{align}
+            u_{t}(t,x) &= f\left(t,u(t,x)\right) &\text{perché è soluzione}\label{eq:1dd}\\ 
+            u(t_0,x)&=x &\text{è il dato iniziale}\label{eq:2dd}
+    \end{align}
+    \begin{itemize}
+        \item[\eqref{eq:1dd}:] Supponiamo che $ u(t,x) $ sia derivabile in $ x $ (e questa cosa \emph{non} è stata dimostrata). Allora il secondo membro di \eqref{eq:1dd} è derivabile in $ x $, e dunque anche il primo. Derivando a sinistra e a destra in $ x $ otteniamo: \begin{equation}
+            \label{eq:asterisco} u_{tx}(t,x)=\frac{\partial}{\partial x} f\left(t,u(t,x)\right) = \frac{\partial\,f}{\partial u}\left(t,u(t,x)\right) \cdot u_{x}(t,x) 
+        \end{equation}
+        \item[\eqref{eq:2dd}:] Derivando ambo i membri rispetto a $ x $, ottengo \begin{equation}
+            \label{eq:puntino} u_{x}(t_0,x) = 1 
+        \end{equation}
+    \end{itemize}
+
+    Sia $ v(t)=u_{x}(t,x_0)  $, allora da \eqref{eq:asterisco} \begin{align*}
+        v'(t) =\frac{d}{dt} v(t) &= \frac{\partial \,f}{\partial u}\left(t, u(t,x_0)\right) \cdot u_{x}(t,x_0)\\ 
+        &= \parentesi{g(t)\coloneqq}{\frac{\partial\,f}{\partial u}\left(t,u(t,x_0)\right)} \,v(t),
+    \end{align*}mentre da \eqref{eq:puntino} ottengo $ v(t_0)=1 $. 
+
+    Abbiamo trovato che $ v $ risolve il problema di Cauchy lineare: \[
+        \begin{cases}
+            v'(t)=g(t)\,v(t)\\ 
+            v(t_0)=1
+        \end{cases}
+    \]
+}{}{}
+%% END
+\section{Flusso associato ad una equazione differenziale}
+%% BEGIN Flusso associato ad una equazione differenziale
+\paragrafo{Definizione del flusso}{%
+    Sia $ \bm{f}:\Omega \subseteq \R\times \R^{n}\to \R^{n} $ di classe $ C^{1}(\Omega) $. 
+
+    Sia $ (t_0,\bm{x}_0) \in \Omega$, e sia \[
+        \Omega_{0} = \{\bm{x} \in \R^{n}: (t_0,\bm{x}) \in \Omega\}
+    \]e sia $ I(\bm{x}) $ l'intervallo massimale della soluzione $ \bm{u}(t,\bm{x}) $ del problema di Cauchy \[
+        \begin{cases}
+            \bm{u}'=\bm{f}(t,\bm{u})\\ 
+            \bm{u}(t_0)= \bm{x}
+        \end{cases}
+    \]
+
+    Considero ora l'insieme \[
+        E=\{(t,x) \in\Omega : \bm{x} \in \Omega_{0}, t \in I(\bm{x}) \}. 
+    \]
+
+    La funzione $ \bm{\Psi} $ definita sotto si chiama \emph{flusso}, e indica dove si trova al tempo $ t $ la soluzione con dato iniziale $ \bm{u}(t_0)=\bm{x} $. \[
+        \begin{aligned}
+            \bm{\Psi}:E &\longrightarrow \R^{n} \\
+    (t,\bm{x}) &\longmapsto \bm{u}(t,\bm{x})
+        \end{aligned}\qquad \bm{\Psi}_{\bm{x}}(t) \coloneqq \bm{\Psi}(t,\bm{x}) 
+    \]
+}{}{}
+\teorema{}{
+    Se $ \bm{f} \in C^{1}(\Omega)$, allora la funzione $ \bm{\Psi} $ è di classe $ C^{1}(E) $.
+}
+%% END
+\paragrafo{Sistemi autonomi}{%
+    Cosa succede nei sistemi autonomi? Considero \[
+        \begin{cases}
+            \bm{u}'=\bm{f}(\bm{u})\\ 
+            \bm{u}(0)= \bm{x} \in \Omega'
+        \end{cases}
+    \]con $ \displaystyle f: \Omega = \R\times \Omega' \subseteq \R\times \R^{n}\longrightarrow \R^{n} $: \begin{itemize}
+        \item $ \Omega $ è una ``striscia'' di $ \R^{n+1} $, 
+        \item mentre $ \Omega' $ è il dominio di $ \bm{f} $.
+    \end{itemize} 
+    
+    $\implies$ $ \Omega_0 $ non dipende da $ t_0 $ 
+    
+    $\implies$ fissiamo $ t_0=0 $.
+
+    Se $ I(\bm{x}) $ è l'intervallo massimale per la soluzione con $ \bm{u}(0)=\bm{x} $, e $ E $ è l'insieme: \[
+        E=\{(t,\bm{x}): t \in I(\bm{x}), \bm{x} \in \Omega'\}
+    \]allora definisco la funzione \begin{align*}
+    \bm{\Psi}: E &\longrightarrow \R^{n} \\
+    (t,\bm{x}) &\longmapsto \bm{u}(t,\bm{x})
+    \end{align*}e $\bm{\Psi}_{\bm{x}}(t)\coloneqq \bm{\Psi}(t,\bm{x}) $ è soluzione con $ \bm{u}(0)=\bm{x} $.
+}{}{}
+\esempio{
+    \[
+        \begin{cases}
+            u'=u(1-x)\\ 
+            u(0)=x
+        \end{cases}
+    \]Si ha che\begin{itemize}
+        \item se $ x>1 $: $ I(x) = (\alpha_{x}, + \infty ) $ con $ \alpha_{x}>-\infty  $;
+        \item se $ x \in [0,1:] $ $ I(x) = \R $;
+        \item se $ x<0 $: $ I(x)=(- \infty, \omega_{x} ) $ con $ \omega_{x}<+ \infty  $
+    \end{itemize}
+}

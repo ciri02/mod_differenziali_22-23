@@ -1,0 +1,118 @@
+\stepcounter{capitoloeccolo}\chapter{Ripasso E.D.O.}
+\days{23 febbraio}
+%% BEGIN Problema di Cauchy
+\paragrafo{Problema di Cauchy}{%
+    Data una funzione a valori in $ \R^{n} $, $ \bm{f}=\bm{f}(t,\bm{x}) $, con \begin{itemize}
+        \item $ r \in \R  $, $ \bm{x} \in \R^{n} $ o, più precisamente
+        \item $ (t,\bm{x}) \in \Omega \subseteq \R\times \R^{n}$, $ \Omega $ aperto
+    \end{itemize}ci si chiede sotto quali condizioni su $ \bm{f} $ il Problema di Cauchy \[
+        \begin{cases}
+            \bm{u}'(t)= \bm{f}\left(t, \bm{u}(t)\right)\\ 
+            \bm{u}(t_0) = \bm{x}_0
+        \end{cases}
+    \]ammette \emph{almeno} una soluzione o ammette \emph{esattamente} una soluzione, al variare della condizione iniziale $ (t_0, \bm{x}_0) \in \Omega $.
+}{}{}
+%% END
+%% BEGIN Teorema di Peano
+\teorema[Teorema di Peano]{ljkndasflkjnasdlfkjndsalkfjndafs}{
+    Se $ \bm{f} $ è continua su $ \Omega $, allora per ogni punto $ (t_0,\bm{x}_0) \in \Omega$ esiste un intorno di $ t_0 $ nel quale è definita \emph{almeno} una soluzione del Problema di Cauchy \[
+        \begin{cases}
+            \bm{u}'(t)= \bm{f}\left(t, \bm{u}(t)\right)\\ 
+            \bm{u}(t_0) = \bm{x}_0
+        \end{cases}
+    \]
+}
+%% END
+%% BEGIN Pennello di Peano
+\paragrafo{Pennello di Peano}{%
+    Se si dimostra che il problema di Cauchy ammette due soluzioni distinte, allora in realtà ne ha infinite.
+}{}{}
+\esempio{
+    Consideriamo il problema di Cauchy \[
+        \begin{cases}
+            u'(t)=\sqrt[3]{u(t)}\\ 
+            u(0)=0
+        \end{cases}
+    \]Questo problema ammette certamente la soluzione $ u \equiv 0 $, ma anche le soluzioni \[
+        u_{0}^{\pm} =\begin{cases}
+            \pm \displaystyle \left(\frac{2}{3}\, t\right)^{\frac{3}{2}} & t\ge 0\\ 
+            0 & t<0
+        \end{cases} 
+    \]
+}
+%% END
+%% BEGIN Teorema di Cauchy-Lipschitz
+\teorema[Teorema di Cauchy-Lipschitz]{ldksnaflkjnadflkjadnsflajknkljndasf}{
+    Se $ \bm{f} $ \begin{itemize}
+        \item è continua,
+        \item è localmente lipschitziana rispetto alla seconda variabile e uniformemente nella prima\footnote{Ovvero \[
+            \forall\, K \subset \Omega,\quad \exists\,L>0:\quad \norma{\bm{f}(t,\bm{x})-f(t,\bm{y})}\le L\,\norma{\bm{x}-\bm{y}}\qquad \forall\,(t,\bm{x}), (t,\bm{y}) \in K.
+        \]}
+    \end{itemize}allora per ogni punto $ (t_0,\bm{x}_0) \in \Omega $ esiste un intorno di $ t_0 $, $ [t_0-\delta,t_0+\delta] $ nel quale è definita un'unica soluzione del problema di Cauchy \[
+        \begin{cases}
+            \bm{u}'(t)= \bm{f}\left(t, \bm{u}(t)\right)\\ 
+            \bm{u}(t_0) = \bm{x}_0
+        \end{cases}
+    \]
+}
+\dimostrazione{ldksnaflkjnadflkjadnsflajknkljndasf}{
+    La dimostrazione si articola nei seguenti passaggi: \begin{itemize}
+        \item si considera l'\emph{equazione di Volterra} \[
+            \bm{u}(t)= \bm{u}_0 + \int_{t_0}^{t} \bm{f}\left(s,\bm{u}(s)\right)\,ds
+        \]e si mostra che quest’ultima ammette unica soluzione continua in un intorno di $ t_0 $;
+        \item esistenza e unicità dell’equazione di Volterra si dimostrano applicando il Teorema delle contrazioni di Banach-Cacioppoli;
+        \item la seguente successione \[
+            \bm{u}_0(t) \equiv \bm{u}_0,\qquad \bm{u}_n(t) = \bm{u}_0 + \int_{t_0}^{t} \bm{f}\left(s,\bm{u}_{n-1}(s)\right)\,ds,\qquad \forall\, n \in \N
+        \]risulta convergere uniformemente alla soluzione dell’equazione di Volterra e dunque all’unica soluzione del Problema di Cauchy.
+    \end{itemize}
+}
+\osservazione{
+    L'intervallo di definizione della soluzione del problema di Cauchy è certamente più ampio di $ [t_0-\delta,t_0+\delta] $: possiamo infatti applicare lo stesso teorema di esistenza ed unicità locale ai problemi di Cauchy con condizioni iniziali \[
+        \left(t_0\pm\delta, \bm{u}(t_0 \pm \delta)\right) \in \Omega
+    \]ed iterare questo procedimento. 
+
+    In generale, quindi, esiste un intervallo $ (T_{\min}, T_{\max}  ) $ per la soluzione $ \bm{u}(t;t_0,\bm{u}_0) $, che per costruzione non può che essere aperto e connesso.
+}
+%% END
+%% BEGIN Teorema di Esistenza Globale
+\teorema[Teorema di Esistenza Globale]{sasdfkjnasdflkjnasdlkfjnfasd}{
+    Sia $ f $ tale che le ipotesi del teorema di Cauchy-Lipschitz siano soddisfatte. 
+
+    Sia inoltre $ S=(a,b)\times \R^{n} $ una striscia tale che $ \overline{S} \subseteq \Omega $. Se esiste una coppia di costanti positive $ k_1,k_2 $ tali per cui \[
+        \norma{\bm{f}(t,\bm{x})} \le k_1+k_2\,\norma{\bm{x}},\quad \forall\, (t,\bm{x}) \in \overline{S}
+    \]allora, per ogni $ (t_0,\bm{u}_0) \in S $, l'intervallo massimale della soluzione $ \bm{u}(t;t_0,u_0) $ contiene l'intervallo $ [a,b] $.
+}
+\paragrafo{}{%
+    Questo teorema è ciò che garantisce l'esistenza globale per i sistemi lineari del tipo \[
+        \bm{x}'(t)= A(t)\, \bm{x}(t)+ \bm{b}(t)
+    \]con $ A(t) $ matrice $ n\times n $
+}{}{}
+%% END
+%% BEGIN Generalizzazione esplosione tempo finito
+\teorema{fasdkjnfalskjnfalkjdnflaj}{
+    Sia $ \bm{f} $ tale che le ipotesi del teorema di Cauchy-Lipschitz siano soddisfatte. Sia $ K \subset \subset \Omega $\footnote{Ovvero $ K $ contenuto in $ \Omega $ e $ K $ compatto.} $ (t_0,\bm{u}_0) \in K $ e $ (T_{\min}, T_{\max}  ) $ l'intervallo massimale di definizione di $ \bm{u}(t;t_0,\bm{u}(0)) $.
+
+    Allora il grafico di $ \bm{u} $ esce definitivamente da $ K $ quando $ t \to T_{\min}^{+}  $ o $ t \to T_{\max}^{-}  $
+}
+%% END
+%% BEGIN Esplosione in tempo finito
+\paragrafo{Corollario - Esplosione in tempo finito}{%
+    Sia $ \bm{f} $ tale che soddisfi le condizioni del teorema di Cauchy-Lipschitz, e sia $ (T_{\min},T_{\max})$ l'intervallo massimale di $ \bm{u}(t;t_0,u_0) $.
+
+    Se $ T_{\max} < + \infty   $ allora \[
+        \lim_{t\to T_{\max}^{-} } \norma{\bm{u}(t;t_0,u_0)} = + \infty
+    \]se tale limite esiste. Analogamente se $ T_{\min}> - \infty  $.
+}{}{}
+%% END
+\paragrafo{Attenzione}{%
+    Per i prossimi risultati si consideri $ \Omega=\R\times \R^{n} $
+}{}{}
+%% BEGIN Limitatezza a priori
+\paragrafo{Corollario - Limitatezza a priori}{%
+    Sia $ \bm{f} $ tale che le ipotesi del teorema di Cauchy-Lipschitz siano soddisfatte. Sia $ (T_{\min},T_{\max}) $ l'intervallo massimale di $ \bm{u}(t;t_0, \bm{u}_0).$
+
+    Se esiste $ C>0 $ tale per cui \[
+        \norma{\bm{u}(t;t_0,\bm{u}_0)}\le C,\qquad \forall\, t \in [t_0,T_{\max})
+    \]allora $ T_{\max} = + \infty  $
+}{dakfjhbaksjdhfbaksjdhfbakjhbkjhb}{}
+%% END

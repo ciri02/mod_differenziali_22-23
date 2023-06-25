@@ -1,0 +1,97 @@
+%% BEGIN Teorema di dipendenza continua dai dati iniziali
+\teorema[Teorema di dipendenza continua dai dati iniziali]{fsglkjnsdfglkjnsdflgkjnsdflkgjnsdflkgjjjfjfjfjfjfifroiefdfdskjncdskujhsdfalkjandxvberure}{
+    Sia dato il problema di Cauchy \[
+        \begin{cases}
+            \bm{u}'(t)=\bm{f}\left(t,\bm{u}(t)\right)\\ 
+            \bm{u}(t_0)= \bm{x}_0
+        \end{cases}
+    \]con $ \bm{f}: \Omega \subseteq \R\times \R^{n}\to \R^{n}$, $ (t_0,\bm{x}_0) \in \Omega $ continua e localmente lipschitziana nella seconda variabile e uniformemente nella prima.
+
+    Sia $ I_{\max}  $ l'intervallo massimale di $ \bm{u}(t,\bm{x}_0) $. Fissiamo $ [a,b] \subset I_{\max}  $. Allora: \begin{enumerate}
+        \item esiste un intorno di $ \bm{x}_0 $, $ N $, tale che per ogni $ \bm{x} \in N $ la soluzione di \[
+            \begin{cases}
+                \bm{u}'=\bm{f}\left(t,\bm{u}(t)\right)\\ 
+                \bm{u}(t_0)=\bm{x}
+            \end{cases}
+        \]ammette un'unica soluzione il cui intervallo massimale contiene $ [a,b] $;
+        \item per ogni $ \overline{\bm{x}}_0 \in N $ e per ogni $ \{\bm{x}_{k} \}_{k \in \N} \subseteq N$ con $ \bm{x}_k \to \overline{\bm{x}}_0 $ in $ \R^{n} $ la soluzione del corrispondente problema di Cauchy \[
+            \begin{cases}
+                \bm{u}'(t)=\bm{f}\left(t,\bm{u}(t)\right)\\ 
+                \bm{u}(t_0)=\bm{x}_k
+            \end{cases}
+        \]converge uniformemente su $ [a,b] $ alla soluzione di \[
+            \begin{cases}
+                \bm{u}'(t)=\bm{f}\left(t,\bm{u}(t)\right)\\ 
+                \bm{u}(t_0)= \bm{x}_0.
+            \end{cases}
+        \]
+    \end{enumerate}
+}
+\osservazione{
+    La richiesta $ \bm{x}_k \to \overline{\bm{x}}_0$ implica\[
+        \bm{x}_k = \bm{u}(t_0, \bm{x}_k) \longrightarrow \bm{u}(t_0, \overline{\bm{x}}_0) = \overline{\bm{x}}_0
+    \]ovvero la convergenza \emph{puntuale} della successione $ \left\{\bm{u}(t,\bm{x}_k)\right\}_{k} $ in un punto;
+    
+    $\implies$ la successione $ \left\{\bm{u}(t,\bm{x}_k)\right\}_{k} $ converge uniformemente su $ [a,b] $.
+}
+\osservazione{
+    Questo teorema si chiama di ``dipendenza continua'' perché la funzione:\begin{align*}
+    N &\longrightarrow \mathscr{C}\left([a,b]; \norma{ \cdot }_{\infty}\right) \\
+    \bm{x} &\longmapsto \bm{u}(t,\bm{x})
+    \end{align*}è continua; infatti, per $ \bm{x}_k\to \overline{\bm{x}}_0 \in N $ le soluzioni corrispondenti convergono uniformemente.
+}
+\dimostrazione{fsglkjnsdfglkjnsdflgkjnsdflkgjnsdflkgjjjfjfjfjfjfifroiefdfdskjncdskujhsdfalkjandxvberure}{
+    \begin{enumerate}
+        \item Dimostriamo per assurdo. Suppongo che per ogni $ \varepsilon>0 $, $ \exists\,\bm{x}_{\epsilon} \in B_{ \varepsilon}(\bm{x}_0)  $, la soluzione massimale $ \bm{u}_{ \varepsilon}\coloneqq \bm{u}( \cdot , \bm{x}_{ \varepsilon}) $ di \[
+            \begin{cases}
+                \bm{u}'=\bm{f}\left(t,\bm{u}(t)\right)\\ 
+                \bm{u}(t_0)=\bm{x}_{ \varepsilon}
+            \end{cases}
+        \]non è definita su tutto $ [a,b] $. 
+
+        Per semplicità prendo $ t_0=a $ e ``lavoro a destra''. 
+
+        Prendiamo $ \delta>0 $ sufficientemente piccolo e \[
+            k_{\delta} = \left\{(t,\bm{x}) \in \Omega: t \in [a,b], \norma{\bm{u}_{ \varepsilon}(t)-\bm{x}}<\delta\right\} 
+        \]
+
+        Sia $ [a,b_{ \varepsilon})  $ con $ b_{ \varepsilon}< b  $ l'intervallo massimale detro di $ \bm{u}_{ \varepsilon} $. 
+
+        Necessariamente $ \bm{u}_{ \varepsilon} $ deve uscire dal compatto $ k_{\delta} $ prima di $ b_{ \varepsilon} $: \[
+            \forall\, \varepsilon>0\quad \exists\, t_{ \varepsilon} \in (a,b_{ \varepsilon} ): \begin{aligned}
+                \norma{ \bm{u}_{ \varepsilon}(t_{ \varepsilon} )- \bm{u}_0(t_{ \varepsilon} ) } &= \delta \\ 
+                \norma{ \bm{u}_{ \varepsilon}(t )- \bm{u}_0(t) } &< \delta \quad \forall\, t \in [a,t_{ \varepsilon} )
+            \end{aligned}
+        \]
+
+        Sfruttiamo il fatto che $ \bm{u}_0 $ e $ \bm{u}_{ \varepsilon} $ siano le soluzioni di problemi di Cauchy e usiamo le loro equazioni di Volterra. \[
+            \bm{u}_{ \varepsilon} (t) =\bm{u}_{ \varepsilon} (a) + \int_{a}^{t} \bm{f}\left(s, \bm{u}_{ \varepsilon}(s)\right) \,ds
+        \]Definiamo ora, per ogni $ t \in [a,t_{ \varepsilon} ] $, la funzione \begin{align*}
+            \phi(t) &= \norma{\bm{u}_{ \varepsilon}(t)-\bm{u}_{ 0}(t)}\\ &= \norma{%
+            \bm{u}_{ \varepsilon}(a) + \int_{a}^{t} \bm{f}\left(s,\bm{u}_{ \varepsilon}(s)\right) \,ds - \bm{u}_0 - \int_{a}^{t} \bm{f}\left(s, \bm{u}_0(s)\right)\,ds 
+            }\\ 
+            &\le \norma{\bm{u}_{ \varepsilon}(a)-\bm{u}_0(a)} + \int_{a}^{t}\norma{\bm{f}\left(s, \bm{u}_{ \varepsilon}(s)\right) - \bm{f}\left(s, \bm{u}_0(s)\right)}\,ds \\ 
+            &\underset{\footnotemark}{\le} \parentesi{A_{ \varepsilon} }{%
+                \norma{\bm{x}_{ \varepsilon} -\bm{x}_0} 
+            } + L\,\int_{0}^{t}\norma{\bm{u}_{ \varepsilon}(s) - \bm{u}_0(s)}\,ds .
+        \end{align*}\footnotetext{dove $ L $ è la costante di lipschitzianità di $ f $ su $ k_{\delta}  $} 
+
+        Dunque, per il lemma di Gronwall, $ \displaystyle \phi(t)\le A_{ \varepsilon}\, e^{L(t-a)}  $. Inoltre, $ \phi(t_{ \varepsilon} ) = \delta $, e si ha che \[
+            0< \delta \le A_{ \varepsilon} \, e^{L(t_{ \varepsilon} -a)} \longrightarrow 0 
+        \]che è assurdo.
+        \item Sia $ \overline{\bm{x}}_0 \in N $, e sia $ \overline{\bm{u}}(t)\coloneqq \bm{u}(t,\overline{\bm{x}}_0) $; 
+        
+        sia $ \{\bm{x}_{k} \}_{k \in \N} \subseteq N$ tale che $ \bm{x}_k\longrightarrow \overline{\bm{x}}_0 $, e sia $ \bm{u}_k (t)\coloneqq \bm{u}(t,\bm{x}_k)$.\begin{itemize}
+            \item Sia $ \overline{K}_{\delta} $ il $ \delta $-intorno compatto di $ \overline{\bm{u}} $;
+            \item per $ k $ sufficientemente grandi, il grafico di $ \bm{u}_k $ rimane in $ \overline{K}_{\delta} $ (ragionando come il punto precedente);
+            \item uso il lemma di Gronwall sulla \[
+                \phi(t)\coloneqq\norma{\bm{u}_k(t)-\overline{\bm{u}}(t)}
+            \]e ottengo, sempre utilizzando l'equazione di volterra \[
+                \norma{\bm{u}_k(t)-\overline{\bm{u}}(t)} \le \parentesi{\to 0}{\norma{\bm{x}_k-\overline{\bm{x}}_0}}\,e^{L(b-a)}
+            \]dove $ L $ è la costante di lipschitzianità di $ \bm{f} $ su $ \overline{K}_{\delta} $ 
+            
+            $\implies$ $\displaystyle \norma{\bm{u}_k-\overline{\bm{u}}}_{\infty} = \max_{t \in [a,b]} \norma{\bm{u}_k(t)-\overline{\bm{u}}(t)}\le \norma{\bm{x}_k-\overline{\bm{x}}_0}\,e^{L(b-a)}\to 0  $\qed
+        \end{itemize}
+    \end{enumerate}
+}
+%% END

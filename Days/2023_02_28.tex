@@ -1,0 +1,280 @@
+\days{28 febbraio}
+%TODO leggere teorema dell'asintoto e scrivere una nota a riguardo
+
+\section{Risultati e definizioni sui sistemi autonomi}
+
+\definizione{Si dice \emph{sistema autonomo} una equazione differenziale nella forma \[
+    \bm{x}'=\bm{f}(\bm{x}),\qquad \bm{f}:\Omega \subseteq \R^{n}\to \R^{n}
+\]}
+\paragrafo{Ipotesi}{%
+    Dato il problema di Cauchy\[
+        \begin{cases}
+            \bm{x}'=\bm{f}(\bm{x})\\ 
+            \bm{x}(t_0)=\bm{x}_0 \in \Omega
+        \end{cases}
+    \]
+    $ \bm{f}:\Omega \subseteq \R^{n}\to \R^{n} $, $ n\ge 1 $ localemente lipschitziana ($\impliedby C^{1}$), vale il teorema di esistenza e unicità locale della soluzione, $ \forall\, t_0 \in\R  $.
+}{daflkjnasdlkfjnasdlkfjnasdkfjnaskdjnfkjnkj}{}
+\definizione{
+    $ \Omega $ si dice \emph{spazio delle fasi} o \emph{degli stati}.
+}
+\definizione{
+    Se $ \bm{u} $ è una soluzione massimale di $ \bm{x}'=\bm{f}(\bm{x}) $, l'insieme \[
+        \gamma\coloneqq\left\{u(t): t \in (T_{\min}, T_{\max}  )\right\} 
+    \]è detta \emph{orbita} per $ \bm{x}'=\bm{f}(\bm{x}) $ e la soluzione $ \bm{u} $ è una parametrizzazione di $ \gamma  $.
+}
+\osservazione{
+    \[
+        \left\{\begin{aligned}
+            (T_{\min}, T_{\max}  ) &\to \R^{n}\\ 
+            t \mapsto \bm{u}(t)
+        \end{aligned}\right.
+    \]è una curva in $ \R^{n} $ con sostegno $ \gamma  $.
+}
+\definizione{%
+        Lo spazio delle fasi in cui vengono disegnate le orbite con il loro verso di percorrenza (indotto dalle soluzioni) si dice \emph{ritratto di fase}.
+}
+\definizione{%
+    I punti $ \bm{p} \in \Omega $ tali che $ \bm{f}(\bm{p})=\bm{0} $ si chiamano \emph{equilibri} o \emph{punti singolari}
+}
+\paragrafo{Esempio}{%
+\[
+    \begin{cases}
+        x'=-y^{2}\\ 
+        y'=x^{2}
+    \end{cases}\qquad \begin{aligned}
+        \bm{f}(x,y) &= (-y^{2},x^{2})\\ 
+        \bm{f}:\R^{2} &\to \R^{2}
+    \end{aligned}
+\]Chi sono gli equilibri? Cerco $ (x_0,y_0): \bm{f}(x_0,y_0)=\bm{0} $ \[
+    (-y^{2},x^{2})=\bm{0}\,\iff\, (x,y)=\bm{0}
+\]Dunque l'unico punto di equilibrio è l'origine, come mostrato in figura \ref{fig:puntoequilibrioA}.
+\begin{figure}
+    \begin{center}
+        \begin{tikzpicture}
+            \draw [-Stealth] (-2,0) -- (2,0);
+            \draw [-Stealth] (0,-1.4) -- (0,2);
+            \node at (2,-0.3) {$x$};
+            \node at (.3,1.9) {$y$};
+            \fill (0,0) circle (0.1);
+        \end{tikzpicture}
+    \end{center}    
+    \caption{Punti di equilibrio per l'esempio \framref{daflkjansdflkjnasdflkjadsnchiduaskjbfcgukjbh}}
+\end{figure}
+}{daflkjansdflkjnasdflkjadsnchiduaskjbfcgukjbh}{}
+\paragrafo{Esempio}{%
+\[
+    \begin{cases}
+        x'=-y^{2}\,x\\ 
+        y'=x^{2}
+    \end{cases}\qquad
+        \bm{f}(x,y) = (-y^{2}\,x,x^{2})
+\]Gli equilibri sono tutti punti nella forma $ (0,y_0) $, come mostrato in figura \ref{fig:puntoequilibrioB}.
+\begin{figure}
+    \begin{center}
+        \begin{tikzpicture}
+            \draw [-Stealth] (-2,0) -- (2,0);
+            \draw [-Stealth] (0,-1.5) -- (0,2.1);
+            \node at (2,-0.3) {$x$};
+            \node at (.3,1.9) {$y$};
+            \draw [ultra thick] (0,-0.8) -- (0,1.3);
+            \draw [ultra thick, dashed] (0,1.3) -- (0,1.8);
+            \draw [ultra thick, dashed] (0,-0.8) -- (0,-1.3);
+        \end{tikzpicture}
+    \end{center}
+    \caption{Punti di equilibrio per l'esempio \framref{jjdjjduudjjdekkjnsdikjnskjnsdikjsnbfik}}
+\end{figure}
+}{jjdjjduudjjdekkjnsdikjnskjnsdikjsnbfik}{}
+\teorema{daflkjndasflkjndaslkjnfdalkjnaslkjfnlkjn}{
+    Sotto le ipotesi di \framref{daflkjnasdlkfjnasdlkfjnasdkfjnaskdjnfkjnkj}, per ogni punto dello spazio delle fasi, $ \Omega $, passa una e una sola orbita.
+}
+\dimostrazione{daflkjndasflkjndaslkjnfdalkjnaslkjfnlkjn}{
+    Sia $ \bm{p} \in \Omega $, e consideriamo il Problema di Cauchy \[
+        \begin{cases}
+            \bm{x}'=\bm{f}(\bm{x})\\ 
+            \bm{x}(t_0)=\bm{p} 
+        \end{cases}\tag{$PC_{\bm{p}}$}
+    \]
+    \begin{itemize}
+        \item[($\exists$)] Il problema di Cauchy ammette un'unica soluzione $ \bm{u} $ (per il teorema di Cauchy-Lipschitz) e l'orbita associata a $ \bm{u} $ passa per $ \bm{p} $: \[
+            \bm{p} \in \gamma=\left\{\bm{u}(t): t \in (T_{\min}, T_{\max}  )\right\} 
+        \]
+        \item[($!$)] Intuitivamente, l'unicità è giustificata dal fatto che il sistema è autonomo, e quindi dal fatto che le traslate in $ t $ delle soluzioni sono ancora soluzioni.
+        
+        Sappiamo che $ \bm{p} \in \gamma  $. Supponiamo che esista un'altra orbita $ \tilde{\gamma } $ tale che $ \bm{p} \in \tilde{\gamma } $. Allora $ \tilde{\gamma} $ è orbita di $ \tilde{\bm{u}} $, soluzione di \[
+            \begin{cases}
+                \bm{x}'=\bm{f}(\bm{x})\\ 
+                \bm{x}(\tilde{t_0})= \bm{p}
+            \end{cases}
+        \]Siano $ I $ e $ \tilde{I} $ gli intervalli massimali, rispettivamente, di $ \bm{u} $ e $ \tilde{\bm{u}} $. Siano\begin{align*}
+            T&\coloneqq \tilde{t_0}-{t_0}\\
+            \bm{v}(t) &\coloneqq \tilde{\bm{u}}(t+\tilde{t_0}-t_0)=\tilde{\bm{u}}(t+T).
+        \end{align*}Si ha che \begin{itemize}
+            \item l'orbita di $ \bm{v} $ è $ \tilde{\gamma} $;
+            \item $ \bm{v} $ è massimale, in quanto lo è $ \tilde{\bm{u}} $;
+            \item $ \bm{v} $ soddisfa \[
+                \begin{cases}
+                    \bm{v}'(t)= \tilde{\bm{u}}'(t+T)= \bm{f}\left(\tilde{\bm{u}}(t+T)\right)=\bm{f}(\bm{v}(t))\\ 
+                   \bm{v}(t_0)=\tilde{\bm{u}}(t_0+T)=\tilde{\bm{u}}(\tilde{t_0})=\bm{p}
+                \end{cases}
+            \]e quindi $ \bm{v} $ è soluzione massimale di \[
+                \begin{cases}
+                    \bm{v}'=\bm{f}(\bm{v})\\ 
+                    \bm{v}(t_0)=\bm{p}
+                \end{cases}
+            \] 
+            
+            $\implies$ $ \bm{u} $ e $ \bm{v} $ sono la stessa soluzione (massimale) di \[
+                \begin{cases}
+                    \bm{x}'=\bm{f}(\bm{x})\\ 
+                    \bm{x}(t_0)=\bm{p}
+                \end{cases}
+            \] 
+            
+            $\implies$ $ I $ e $ \tilde{I} $ sono uno traslato dell'altro, e $ \gamma $ e $ \tilde{\gamma} $ coincidono.\qed
+        \end{itemize}
+    \end{itemize}
+}
+\osservazione{
+    La mappa: \[
+        \parbox{5.5em}{\centering soluzione di $ \bm{x}'=\bm{f}(\bm{x}) $}\quad\longmapsto\quad\text{orbita}
+    \]è ben definita, ma non è iniettiva (è suriettiva!).
+
+    Infatti, se $ \gamma $ è orbita \[
+        \gamma=\left\{u(t):t \in (a,b)\right\}\underset{\footnotemark}{=}\left\{u_{\tau}(t)=u(t+\tau): t \in (a-\tau, b-\tau) \right\}.
+    \]\footnotetext{$\forall \tau \in \R$}Dunque ogni orbita di $ \bm{x}'=\bm{f}(\bm{x}) $ ha infinite parametrizzazioni.
+}
+\teorema{lkjndalkjndfalkjndasklfjnasdkljfnasdkljfnasdjkndaslkjnfaldskjnaslfkjnsaldkjn}{%
+    Sotto le ipotesi di \framref{daflkjnasdlkfjnasdlkfjnasdkfjnaskdjnfkjnkj}, sia $ \gamma^{\star} $ un'orbita di $ \bm{x}'=\bm{f}(\bm{x}) $. Allora: \[
+        \gamma^{\star} =\{\bm{p}\}\,\iff\, \bm{f}(\bm{p})=\bm{0}.
+    \]
+}
+\dimostrazione{lkjndalkjndfalkjndasklfjnasdkljfnasdkljfnasdjkndaslkjnfaldskjnaslfkjnsaldkjn}{%
+    \begin{itemize}
+        \item[($\impliedby$)] Se $ \bm{f}(\bm{p})=\bm{0} $, allora $ \bm{u}(t)=\bm{p} $ $ \forall\, t \in \R $ è soluzione, e \[
+            \gamma^{\star} = \left\{\bm{u}(t): t \in \R\right\}=\{\bm{p}\}.
+        \]
+        \item[($\implies$)] Se $ \gamma^{\star} =\{\bm{p}\} $ allora esiste una soluzione $ \bm{u} $ di $ \bm{x}'=\bm{f}(\bm{x}) $ tale che $ \bm{u}(t)=\bm{p} $ per ogni $ t \in (T_{\min},T_{\max}  ) $. Allora $ \bm{u}(t) $ è costante, e dunque \[
+            \bm{0}=\bm{u}'(t)=\bm{f}\left(\bm{u}(t)\right)=\bm{f}(\bm{p}).\qedd
+        \]
+    \end{itemize}
+}
+\definizione{%
+    Una soluzione $ \bm{u} $ di $ \bm{x}'=\bm{f}(\bm{x}) $ si dice \emph{periodica} di periodo $ T>0 $ se \begin{itemize}
+        \item $ \bm{u} $ è definita su $ \R $;
+        \item $ \bm{u}(t+T)=\bm{u}(t) $, $ \forall\, t \in \R $
+        \item $ \displaystyle T=\inf\left\{\tau >0: u(t+\tau)=u(t)\vspace{1em}\forall\,t \in \R\right\} $
+    \end{itemize}
+}
+\definizione{
+    L'orbita corrispondente ad una soluzione periodica si chiama \emph{orbita periodica} e i suoi punti si chiamano \emph{punti periodici}.
+}
+\teorema{daflkjnadfkljansdfklasjdnfcaskdjncdas}{
+    Sotto le ipotesi di \framref{daflkjnasdlkfjnasdlkfjnasdkfjnaskdjnfkjnkj}, se $ \bm{u} $ è una soluzione \emph{non} costante di $ \bm{x}'=\bm{f}(\bm{x}) $ con intervallo massimale $ J $, e se \[
+        \exists\, t_1,t_2 \in J:\quad t_1\neq t_2,\quad \bm{u}(t_1)=\bm{u}(t_2)
+    \]allora $ \bm{u} $ è una soluzione \emph{periodica}.
+}
+\osservazione{
+    Le orbite periodiche si chiamano anche \emph{orbite chiuse}. Infatti, il teorema \teoref{daflkjnadfkljansdfklasjdnfcaskdjncdas} ci dice che se un'orbita si autointerseca, allora è periodica.
+}
+\corollario{adkjnaldfkjnadslfkjnadsflkjnadslkjn}{
+    Le orbite di $ \bm{x}'=\bm{f}(\bm{x}) $ possono essere: \begin{enumerate}
+        \item punti di equilibrio, $ \{\bm{p}\} $;
+        \item periodiche/chiuse;
+        \item orbite senza autointersezioni e contenenti più di un solo punto.
+    \end{enumerate}
+}
+\paragrafo{Caso particolare}{%
+    Per $ n=1 $ non esistono orbite periodiche non costanti, perché dovrebbero cambiare la monotonia e non è possibile perché $ x'=f(x) $, e la cambierebbero su punti di equilibrio.
+}{}{}
+\dimostrazione{daflkjnadfkljansdfklasjdnfcaskdjncdas}{
+    È analoga al teorema \teoref{daflkjndasflkjndaslkjnfdalkjnaslkjfnlkjn}. 
+
+    Sia $ \bm{p}\coloneqq \bm{u}(t_1)= \bm{u}(t_2) $. Allora $ \bm{u} $ risolve due problemi di Cauchy: \[
+        \begin{cases}
+            \bm{x}'=\bm{f}(\bm{x})\\ 
+            \bm{x}(t_1)=\bm{p}
+        \end{cases}\qquad \begin{cases}
+            \bm{x}'=\bm{f}(\bm{x})\\ 
+            \bm{x}(t_2)=\bm{p}
+        \end{cases}
+    \]entrambi risolti su $ J $.
+
+    Gli intervalli massimali di questi due problemi di Cauchy devono essere uno traslato dell'altro, dunque $ J=\R $. 
+
+    Inoltre, supponendo $ t_2>t_1 $, si ha che \[
+        \bm{u}(t),\qquad \bm{u}\left(t+(t_2-t_1)\right)
+    \]risolvono entrambe \[
+        \begin{cases}
+            \bm{x}'=\bm{f}(\bm{x})\\ 
+            \bm{x}(t_1)=\bm{p}
+        \end{cases}
+    \]e per esistenza e unicità della soluzione si ha che \[
+        \bm{u}(t)=\bm{u}(t+T),\quad \forall t \in\R, T=t_2-t_1\qedd
+    \]
+}
+%% BEGIN Orbita di una equazione differenziale come curva tangente al campo
+\teorema{dakfjnasldkfjnlasdkjfnadslkfjnaslkj}{
+    Sia $ \gamma $ un'orbita non singolare\footnote{Ovvero $ \gamma \neq \{\bm{p}\} $.} di $ \bm{x}'=\bm{f}(\bm{x}) $, $ \bm{x} \in \Omega \subseteq \R^{n} $ aperto, $ \bm{f}:\Omega \to \R^{n} $ localmente lipschitziana. 
+
+    Allora $ \gamma $ è una curva orientata in $ \Omega $ tangente in ogni punto al campo $ \bm{f} $.
+}
+\dimostrazione{dakfjnasldkfjnlasdkjfnadslkfjnaslkj}{
+Sia $ \bm{u} $ soluzione di $ \bm{x}'=\bm{f}(\bm{x}) $ tale che $ \gamma= \gamma_{\bm{u}}  $. Sia $ \bm{p}_0  \in \gamma$ e $ t_0 $ tale che $ \bm{u}(t_0)=\bm{p}_0 $. 
+
+$ \gamma $ non è singolare, quindi $ \bm{f}(\bm{p}_0) \neq \bm{0}$ (altrimenti $ \gamma=\{\bm{p}_0\} $ per il teorema precedente.)
+
+La funzione $ t\mapsto \bm{u}(t) $ parametrizza $ \gamma $. Quindi il vettore: \[
+    \bm{v}\coloneqq \lim_{h\to 0} \frac{\bm{u}(t_0+h)-u(t_0)}{h} =
+\]è il vettore tangente a $\gamma$ nel punto $ \bm{p}_0 $, ammesso che esista. 
+
+La funzione $ \bm{u} $ è di classe $ C^{1} $, quindi il limite esiste ed è $ \bm{u}'(t_0) $. Essendo \[
+    \bm{u}'(t)=\bm{f}\left(\bm{u}(t)\right)
+\]si ha che \[
+    \bm{v}=\bm{u}'(t_0)=\bm{f}\left(\bm{u}(t_0)\right)= \bm{f}(\bm{p}_0)\qedd
+\]}
+%% END
+%% BEGIN Orbita singolare e regolare
+\definizione{
+    Un’orbita si dice \emph{singolare} se si riduce ad un punto solo. Altrimenti si dice \emph{regolare}.
+}
+%% END
+\section{Stabilità dei punti di equilibrio}
+\paragrafo{Obiettivo}{%
+    Vogliamo classificare i punti di equilibrio in base a come le altre soluzioni si comportano in loro prossimità.
+}{}{}
+\definizione{
+    Sotto le ipotesi di \framref{daflkjnasdlkfjnasdlkfjnasdkfjnaskdjnfkjnkj}, sia $ \bm{p} $ tale che $ \bm{f}(\bm{p})=\bm{0} $. $ \bm{p} $ si dice \emph{stabile} se $ \forall\,\varepsilon>0 $, $ \exists\, \delta>0 $: $\hat{\bm{x}} \in \Omega $, $ \norma{\hat{\bm{x}}-\bm{p}}<\delta $ 
+    
+    $\implies$ la soluzione di \[
+        \begin{cases}
+            \bm{x}'=\bm{f}(\bm{x})\\ 
+            \bm{x}(t_0)=\hat{\bm{x}}
+        \end{cases}
+    \]è definita su $ (t_0,+ \infty) $ e dista da $ \bm{p} $ al più $ \varepsilon $.
+}
+\paragrafo{}{%
+    La soluzione quindi rimane vicina all'equilibrio (quanto vogliamo) pur di partire sufficientemente vicino.
+}{}{}
+\definizione{
+    Sotto le ipotesi di \framref{daflkjnasdlkfjnasdlkfjnasdkfjnaskdjnfkjnkj}, sia $ \bm{p} $ tale che $ \bm{f}(\bm{p})=\bm{0} $. $ \bm{p} $ si dice \emph{instabile} se non è stabile. 
+}
+\paragrafo{}{%
+    Essere instabile significa che $ \exists\, \varepsilon $ e una successione $ \{\bm{x}_{n} \}_{n \in \N} \subseteq \Omega $, $ \bm{x}_{n} \to \bm{p} $ tale che \[
+        \forall\, n,\quad \exists\, t_{n}: \quad \bm{u}_{\bm{x}_n}(t_{n} )> \varepsilon 
+    \]dove $ \bm{u}_{\bm{x}_n} $ è soluzione di \[
+        \begin{cases}
+            \bm{x}'=\bm{f}(\bm{x})\\ 
+            \bm{x}(t_0)=\bm{x}_n
+        \end{cases}
+    \]
+}{}{}
+\definizione{
+    Sotto le ipotesi di \framref{daflkjnasdlkfjnasdlkfjnasdkfjnaskdjnfkjnkj}, sia $ \bm{p} $ tale che $ \bm{f}(\bm{p})=\bm{0} $. $ \bm{p} $ si dice \emph{asintoticamente stabile} se:
+    \begin{itemize}
+        \item $ \bm{p} $ è stabile;
+        \item $ \exists\,\delta>0 $ tale che $ \forall\, \overline{\bm{x}} \in B_{\delta}(\bm{p}) $, $ \overline{\bm{x}} \in \Omega $ si ha che \[
+            \lim_{t\to \infty} \bm{u}_{\overline{\bm{x}}} (t) = \bm{p}
+        \]
+    \end{itemize}
+}

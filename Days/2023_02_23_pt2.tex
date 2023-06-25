@@ -1,0 +1,113 @@
+\stepcounter{capitoloeccolo}\chapter{Equazioni autonome}
+\section{Equazioni autonome in una dimensione} 
+\subsection{Equazione logistica}
+%% BEGIN Equazione logistica
+\paragrafo{Studio delle soluzioni}{%
+    Sia $ p'(t)= \left(k-h\,p(t)\right) \cdot p(t)$, dove $ p(t) $ è il numero di individui in un popolazione al tempo $ t $, con $ k,h>0 $ e $ p(t)\ge 0 $. 
+
+    Supponiamo che $ p(0)=p_0\ge 0 $, ci chiediamo l'evoluzione di $ p(t) $ per $ t>0 $. \begin{itemize}
+        \item Cerco le soluzioni costanti, ovvero $ f(p)=0 $: $ p=0 $ e $ p=(k/h) $. Queste due sono soluzioni costanti per ogni tempo $ t $.
+        \item Studio la monotonia delle soluzioni: $ p'(t)\ge 0 $ \[
+            \left(k-h\,p(t)\right) \cdot \parentesi{\ge 0}{p(t)}\ge 0.
+        \]Dunque $ p'(t)\ge 0 $ $ \iff $ $ p(t)\le k/h $ 
+        
+        $\implies$ se $ p(t) \in (0, k/h) $ la soluzione cresce, mentre se $ p(t)> k/h $ la soluzione decresce.
+    \end{itemize}
+
+    Se il dato iniziale $ p_0 \in (0,k/h) $ allora la soluzione è crescente, e si troverà sempre nella striscia $ [0,+ \infty)\times (0,k/h) $ (per esistenza e unicità locale) 
+        
+        $\implies$ la soluzione si mantiene limitata, e in particolare \[
+            \norma{p}\le k/h.
+        \]È soddisfatto il corollario \framref{dakfjhbaksjdhfbaksjdhfbakjhbkjhb}, e quindi $ T_{\max}= + \infty  $
+
+    Se il dato iniziale $ p_0>k/h $, la soluzione è sempre monotona decrescente, e si troverà sempre nel semispazio $ p>k/h $. Anche in questo caso si applica il corollario \framref{dakfjhbaksjdhfbaksjdhfbakjhbkjhb} 
+    
+    $\implies$ $ T_{\max}= + \infty  $. 
+
+    Osservo infine che il teorema dell'asintoto ci garantisce che tutte le soluzioni non costanti abbiano come limite a $ + \infty $ la soluzione constante $ k/h $.
+}{}{}
+\paragrafo{Diagramma di fase}{%
+    Poiché $ p(t) \in \R $, si dice che $ \R $ è lo \emph{spazio delle fasi} o degli stati.
+
+    \begin{figure}
+        \begin{center}
+            \subfloat[Grafico delle funzioni]{%
+            \begin{tikzpicture}
+                \draw [-Stealth] (-0.5, 0) -- (3,0);
+                \draw [-Stealth] (0, -0.5) -- (0,3);
+                \foreach \y in {0,0.2,...,3}{
+                    \draw (-0.5, \y-0.5) -- (-0.1, \y-0.1);
+                };
+                \foreach \x in {0.2,0.4,...,3}{
+                    \draw (\x-0.5, -0.5) -- (\x-0.1, -0.1);
+                };
+                \node at (3.1,-0.2) {$t$};
+                \node at (3.4,1.2) {$k/h$};
+                \draw [ultra thick] (0,0) -- (1.7,0);
+                \draw [ultra thick, dashed] (1.8,0) -- (2.7,0);
+                \draw [ultra thick] (0,1.2) -- (1.7,1.2);
+                \draw [ultra thick, dashed] (1.8,1.2) -- (3,1.2);
+                \draw [smooth, domain=0:2.2, thick] plot (\x,{0.7 * ln(\x + 1.4)});
+                \draw [smooth, domain=2.2:2.9, dashed, thick] plot (\x,{0.7 * ln(\x + 1.4)});
+                \draw [smooth, domain=0:2.2, thick] plot (\x,{-0.7 * ln(\x + 1.4)+2.5});
+                \draw [smooth, domain=2.2:2.9, dashed, thick] plot (\x,{-0.7 * ln(\x + 1.4)+2.5});
+            \end{tikzpicture}
+        }\qquad\subfloat[Diagramma di fase]{%
+            \begin{tikzpicture}
+                \draw [white] (-3.5/2, 0) -- (3.5/2,0);
+                \draw (0, 0) -- (0,2.6);
+                \draw [dashed] (0, 3) -- (0,2.6);
+                \draw [white] (0, -0.5) -- (0,0);
+                \fill (0,0) circle (0.05);
+                \fill (0,1.2) circle (0.05);
+                \draw [decoration={markings,mark=at position 0.6 with {\arrow{Stealth}}}, postaction=decorate] (0,0) -- (0,1.2);
+                \draw [decoration={markings,mark=at position 0.6 with {\arrow{Stealth}}}, postaction=decorate] (0,2.6) -- (0,1.2);
+            \end{tikzpicture}%TODO finire il disegno
+        }
+        \end{center}
+
+        \caption{Equazione Logistica (\textbf{da finire})}\label{fig:equazionelogistica}
+    \end{figure}
+
+    Osservando la figura \ref{fig:equazionelogistica}, il grafico a destra prende il nome di \emph{diagramma di fase}.
+}{}{}
+%% END
+\osservazione{
+    Tra due zeri consecutivi di $ f $, la monotonia della soluzione (nel caso autonomo) non cambia.
+}
+\subsection{Diagramma di fase}
+%% BEGIN Diagramma di fase
+\definizione{Se $ u $ è una soluzione massimale\footnote{Ovvero il suo dominio di definizione è massimale.} di $ y'=f(y) $, l'insieme \[
+    \gamma_{u}=\left\{u(t): t \in \left(T_{\min},\ T_{\max}\right)\right\} 
+\]è detta \emph{orbita di $ u $}.}
+\paragrafo{Nota}{%
+    Le soluzioni stazionarie di $ y'=f(y) $ hanno come orbita un singolo punto.
+}{}{}
+\definizione{L'insieme delle orbite con il loro verso di percorrenza costituisce il \emph{ritratto di fase} di $ y'=f(y) $.}
+\esempio{
+    L'equazione logistica ha 5 orbite: due semirette, due punti e un segmento.
+}
+\paragrafo{}{%
+    Dimostreremo in $ \R^{n} $ che per ogni punto dello spazio delle fasi passa una ed una sola orbita. Nel caso 1-dimensionale, si può notare che se $ u_{x_0}  $ è soluzione di \[
+        \begin{cases}
+            x'=f(x)\\ 
+        x(0)=x_0
+        \end{cases}
+    \]allora la funzione $ w(t)\coloneqq u_{x_0}(t+\tau)  $ risolve \[
+        \begin{cases}
+            x'=f(x)\\ 
+        x(0)=u_{x_0}(\tau) 
+        \end{cases}
+    \] 
+    
+    $\implies$ la soluzione di \[
+        \begin{cases}
+            x'=f(x)\\ 
+        x(\tau)=x_0
+        \end{cases}
+    \]è $ u_{x_0}(t-\tau)  $
+}{}{}
+%% END
+\sesercizio{Fare il diagramma di fase dell'equazione differenziale \[
+    y'=y(2-y)\,e^{\sin y}
+\]}

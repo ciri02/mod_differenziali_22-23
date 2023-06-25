@@ -1,0 +1,19 @@
+\chapter{Sistemi di E.D.O. lineari}\stepcounter{capitoloeccolo}
+\paragrafo{Perché è utile studiarli}{%
+    Sia data l'equazione autonoma $ \bm{x}'=\bm{f}(\bm{x}) $; sia $ \bm{x}^{\star} $ tale che $ \bm{f}(\bm{x}^{\star})=\bm{0} $ 
+    
+    $\implies$ $ \{\bm{x}^{\star}\} $ è orbita, e può essere stabile, instabile,\dots
+
+    Considero ora $ \bm{x}^{\star}+ \bm{\eta}=\bm{x} $; 
+    
+    $\implies$ $ \bm{f}(\bm{x})=\bm{f}(\bm{x}^{\star} + \bm{\eta}) $. 
+
+    Sviluppo ora $ \bm{f}(\bm{x})$ al primo ordine: \[
+        \bm{f}(\bm{x})= \parentesi{=\bm{0}}{\bm{f}(\bm{x}^{\star})} + J_{\bm{f}}(\bm{x}^{\star})\,\bm{\eta} + o\left(\norma{\bm{\eta}}\right),\qquad \norma{\bm{\eta}}\to \bm{0}
+    \]Dunque \begin{align*}
+        \bm{x}(t) &= \bm{x}^{\star} + \bm{\eta}(t)\\ 
+        \bm{f}(\bm{x})=\bm{x}'(t) &= \bm{\eta}'(t) 
+    \end{align*}Sostituisco e ottengo \[
+        \bm{\eta}'(t) = J_{\bm{f}}(\bm{x}^{\star})\,\bm{\eta}(t) + o\left(\norma{\bm{\eta}(t)}\right)
+    \]dove $ J_{\bm{f}}(\bm{x}^{\star}) $ è una matrice costante.
+}{}{}

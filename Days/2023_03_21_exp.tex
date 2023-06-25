@@ -1,0 +1,282 @@
+%% BEGIN Esponenziale di una matrice
+\definizione{
+    Data $ A \in \R^{n,n} $, definiamo \[
+        e^{A} \coloneqq \displaystyle \sum_{k=0}^{\infty} \frac{A^{k}}{k!}
+    \]
+}
+\paragrafo{Ripasso}{%
+    \begin{itemize}
+        \item Si definisce la norma euclidea matriciale come: \[
+            \norma{A} = \left( \sum_{i,j=1}^{n}a_{ij}^{2}  \right)^{1/2}
+        \]e vale la disuguaglianza: $ \norma{AB}\le \norma{A} \cdot \norma{B} $. 
+        \item Criterio di Weierstrass: \[
+            \sum_{k}\norma{B_{k} }< \infty \,\implies\, \sum_{k} B_{k}    
+        \]
+    \end{itemize}
+}{}{}
+\paragrafo{Buona definizione}{%
+    Dunque, affinché $ e^{A} $ sia ben definita, vogliamo che \[
+        \sum_{k=0}^{\infty} \norm{\frac{A^{k}}{k!}}
+    \]sia convergenti, e in effetti si ha: \[
+        \norm{\frac{A^{k}}{k!}} = \frac{1}{k!}\,\norm{A^{k}}\le \frac{1}{k!}\,\norm{A}^{k}
+    \]e la serie \emph{di numeri reali} converge: \[
+        \sum_{k=0}^{\infty}\frac{\norm{A}^{k}}{k!}
+    \]dunque la matrice esponenziale è sempre ben definità.
+}{}{}
+\paragrafo{Proprietà}{%
+    $ e^{A} $ soddisfa queste proprietà: \begin{romanen}
+        \item $ e^{\bm{0}_n} = \I_{n}  $
+        \item $ e^{A+B}=e^{A}\,e^{B} $;
+        \item $ A\,e^{A}=e^{A}\,A $
+    \end{romanen}
+}{}{}
+%% END
+
+%% BEGIN Matrice risolvente per equazioni differenziali lineari
+\teorema{dkdkdkkkdkkkkdkkdkkteroremamiatricedimonodromia}{
+    La matrice $ e^{tA} $, $ t \in \R $, è la matrice di monodromia (risolvente) per \[
+        \bm{x}'=A\,\bm{x}.
+    \]In particolare, l'unica soluzione di \[
+        \begin{cases}
+            \bm{x}'=A\,\bm{x}\\ 
+            \bm{x}(0)=\bm{x}_0  
+        \end{cases}
+    \]è $ \bm{x}(t)=e^{tA}\,\bm{x}_0 $.
+}
+\dimostrazione{dkdkdkkkdkkkkdkkdkkteroremamiatricedimonodromia}{
+    Dimostro che la soluzione è \[
+        \bm{x}(t)=e^{t\,A}\,\bm{x}_0.
+    \]La condizione iniziale è soddisfatta, devo verificare che $ \bm{x}'(t)=A\,\bm{x}(t) $. \begin{align*}
+        \bm{x}'(t) &= \lim_{h\to 0} \frac{\bm{x}(t+h)-\bm{x}(t)}{h} = \lim_{h\to 0} \frac{e^{(t+h)A}\,\bm{x}_0-e^{tA}\,\bm{x}_0}{h}\\ 
+        &= \lim_{h\to 0} \frac{e^{hA}\,e^{tA}\,\bm{x}_0-e^{tA}\,\bm{x}_0}{h}\\ 
+        &= \lim_{h\to 0} \frac{e^{hA}-\I_{n} }{h}\,e^{tA}\,\bm{x}_0
+    \end{align*}La tesi da dimostrare, ora, è che \[
+        \lim_{h\to 0} \frac{e^{hA}-\I_{n} }{h} = A
+    \]ovvero che \[
+        \lim_{h\to 0} \left(\frac{e^{hA}-\I_{n} }{h} - A\right) = 0
+    \]Svolgendo i passaggi: \begin{align*}
+        \lim_{h\to 0} \left(\frac{e^{hA}-\I_{n} }{h} - A\right) &= \lim_{h\to 0} \frac{e^{hA}-\I_{n}-hA }{h}\\ 
+        &= \lim_{h\to 0} \frac{\displaystyle \sum_{k=2}^{\infty} \frac{(hA)^{k}}{k!}}{h} = 0
+    \end{align*}Mostro l'ultima uguaglianza mostrando che la norma di quel termine tende a $ 0 $. \begin{align*}
+        \norm{\frac{1}{h}\sum_{k=2}^{\infty} \frac{(hA)^{k}}{k!}} &\le \frac{1}{|h|} \sum_{k=2}^{ \infty} \frac{|h|^{k}\,\norm{A}^{k}}{k!}\\ 
+        &= \frac{1}{|h|}\left(e^{|h|\,\norm{A}}-1-|h|\,\norm{A}\right)\\ 
+        &= \frac{e^{|h|\,\norm{A}}-1}{|h|} - \norm{A}\\ 
+        &= \norm{A}\, \parentesi{\xrightarrow[|h|\to 0]{} 1 }{\frac{e^{|h|\,\norm{A}}-1}{|h|\,\norm{A}}}-\norm{A} \displaystyle \xrightarrow[|h|\to 0]{} 0 
+        \qedd
+    \end{align*}
+}
+%% END
+
+%% BEGIN Calcolo esplicito della matrice esponenziale
+\osservazione{
+    Nella risoluzione dei sistemi lineari per matrici diagonali e diagonalizzabile, è stata calcolata esplicitamente la matrice risolvente. Per l'unicità della soluzione, segue che: \begin{enumerate}
+        \item per $ A $ diagonale, \[
+            e^{tA}= \begin{pmatrix}
+                e^{\lambda_1\,t}\\ 
+                & e^{\lambda_2\,t}\\ 
+                & & \ddots\\ 
+                & & & e^{\lambda_{n}\,t }
+            \end{pmatrix},\qquad A=\begin{pmatrix}
+                \lambda_1\\ 
+                & \lambda_2\\ 
+                & & \ddots\\ 
+                & & & \lambda_{n} 
+            \end{pmatrix}
+        \]
+        \item per $ A $ diagonalizzabile, $ A=Q\,D\,Q^{-1} $, $ Q $ matrice degli autovettori, \[
+            D=\begin{pmatrix}
+                \lambda_1\\ 
+                & \lambda_2\\ 
+                & & \ddots\\ 
+                & & & \lambda_{n} 
+            \end{pmatrix},\qquad e^{tA}= Q\,e^{tD}\,Q^{-1}
+        \]
+    \end{enumerate}
+}
+\osservazione{
+    Per un teorema precedente, se $ A \in \R^{2,2} $ con autovalori complessi \[
+        \mu,\overline{\mu} = a\pm i\,b
+    \]e autovettori $ \bm{z}_{\mu} = \bm{w}+i\,\bm{v}   $, definita la matrice $ Q=[\bm{v}, \bm{w}] $, allora \[
+        e^{tA}=e^{at}\,Q\,R_{bt}\, Q^{-1}
+    \]
+}
+\paragrafo{Ipotesi}{%
+    Consideriamo $ A \in \R^{n,n} $, con \begin{itemize}
+        \item $ \{\lambda_1,\dots,\lambda_{h} \} $ autovalori reali con autovettori $ \{\bm{u}_1,\dots,\bm{u}_h\} $;
+        \item $ \{\mu_1, \overline{\mu}_1, \dots, \mu_{k}, \overline{\mu}_k \} $ autovalori complessi con autovettori $ \{\bm{z}_1,\dots,\bm{z}_k\} $
+    \end{itemize}tali per cui $ h+2k=n $. Scrivo \begin{align*}
+        \mu_{j} &= a_{j} + i\,b_{j}\\   
+        \bm{z}_j &= \bm{w}_j+i\,\bm{v}_j
+    \end{align*}
+
+    Costruisco la matrice \[
+        Q=\begin{pmatrix}
+            \bm{u}_1 & \dots & \bm{u}_h & \bm{v}_1 & \bm{w}_1 & \dots & \bm{v}_k & \bm{w}_k 
+        \end{pmatrix}
+    \]e la matrice pseudo diagonale: \[
+        \tilde{D}=\begin{pmatrix}
+            \lambda_1\\ 
+            & \lambda_2\\ 
+            & & \ddots\\ 
+            & & & \lambda_{h}\\ 
+            & & & & \begin{bmatrix}
+                a_1 & -b_1\\ 
+                b_1 & a_1
+            \end{bmatrix}\\
+            & & & & &\ddots\\ 
+            & & & & & &\begin{bmatrix}
+                a_k & -b_k\\ 
+                b_k & a_k
+            \end{bmatrix}
+        \end{pmatrix}
+    \]e dunque si ha che \[
+        \tilde{R}=e^{t\tilde{D}}=\begin{pmatrix}
+            e^{\lambda_1\,t}\\ 
+            & \ddots\\ 
+            & & e^{\lambda_h\,t}\\ 
+            & & &\begin{bmatrix}
+                e^{a_1\,t}R_{b_1\,t} 
+            \end{bmatrix}\\ 
+            & & & &\ddots\\ 
+            & & & & &\begin{bmatrix}
+                e^{a_k\,t}R_{b_k\,t} 
+            \end{bmatrix}
+        \end{pmatrix}
+    \]dove $ R_{b_{j}\,t }$ è la matrice \[
+        \begin{pmatrix}
+            \cos(b_j\,t) & -\sin(b_j\,t)\\ 
+            \sin(b_j\,t) & \cos(b_j\,t)
+        \end{pmatrix}
+    \]
+}{}{}
+\osservazione{
+    Per un teorema precedente, nelle ipotesi di cui sopra si ha che \[
+        e^{tA}=Q\,e^{t\,\tilde{D}}\,Q^{-1}
+    \]
+}
+%% END
+
+%% BEGIN Soluzione di una equazione differenziale lineare con una matrice con autovalori in CC in forma canonica
+\paragrafo{Caso $2\times 2$ base}{%
+    Consideriamo $ A \in \R^{2,2} $ in forma canonica, \[
+        A=\begin{pmatrix}
+            a & -b\\ 
+            b & a
+        \end{pmatrix}\qquad a,b \in \R, b \neq 0
+    \]I due autovalori sono \begin{align*}
+        \mu &= a+i\,b\\ 
+        \overline{\mu} &= a-i\,b
+    \end{align*}Il sistema $ \bm{x}'=A\,\bm{x} $ diventa: \[
+        \begin{cases}
+            x_1'=a\,x_1-b\,x_2\\ 
+            x_2'=b\,x_1+a\,x_1
+        \end{cases}
+    \]Definisco la funzione complessa \[
+        z(t)\coloneqq x_1(t)+i\,x_2(t)
+    \]e la derivo: \begin{align*}
+        z'(t)&= x_1'(t)+i\,x_2'(t)\\ 
+        &= a\,x_1(t)-b\,x_2(t) + i\,b\,x_1(t)+i\,a\,x_2(t)\\ 
+        &= \mu\,x_1(t)+i\,\mu\,x_2(t) = \mu\,z(t)
+    \end{align*}Dunque si ha che \[
+        z(t)=c\,e^{\mu\,t}, \quad c=c_1+i\,c_2 \in \C
+    \]Esplicitando ora la funzione: \begin{align*}
+        z(t)&= (c_1+i\,c_2) e^{(a+i\,b)t} = (c_1+i\,c_2)e^{a\,t}\,e^{i\,b\,t}\\ 
+        &= (c_1+i\,c_2)e^{a\,t}\,\left(\cos(bt)+i\,\sin(bt)\right)\\ 
+        &= e^{a\,t}\left[c_1\,\cos(bt)-c_2\,\sin(bt)\right]+i\,e^{a\,t}\left[c_1\,\sin(bt)+c_2\,\cos(bt)\right]
+    \end{align*}Da qui posso scrivere, ricordando la definizione di $ z(t) $ \[
+        \begin{cases}
+            x_1 = e^{a\,t}\left[c_1\,\cos(bt)-c_2\,\sin(bt)\right]\\
+            x_2=e^{a\,t}\left[c_1\,\sin(bt)+c_2\,\cos(bt)\right]
+        \end{cases}
+    \]Posso ora quindi scrivere la soluzione dell'equazione differenziale iniziale: \[
+        \bm{x}(t) = \begin{pmatrix}
+            x_1(t)\\ x_2(t)
+        \end{pmatrix}= e^{at}\,\parentesi{R_{bt} }{%
+            \begin{pmatrix}
+                \cos(bt) & -\sin(bt)\\ 
+            \sin(bt) & \cos(bt)
+            \end{pmatrix}
+        }\,\parentesi{\bm{x}(0)}{\begin{pmatrix}
+            c_1\\c_2
+        \end{pmatrix}}
+    \]Dunque le orbite sono contraddistinte da: \begin{itemize}
+        \item una dilatazione se $ a>0 $ (e in questo caso l'origine si chiama \emph{sorgente});
+        \item una contrazione se $ a<0 $ (e in questo caso l'origine si chiama \straniero{sink}, o \emph{pozzo});
+    \end{itemize}mentre per quanto riguarda la rotazione, questa sarà: \begin{itemize}
+        \item antioraria se $ b>0 $;
+        \item oraria se $ b<0 $.
+    \end{itemize}
+}{}{}
+\teorema{dojnskjndjdjdicidjisijcoijsdlkjnckjndkjncskjndkjncjdjdjcjdj}{
+    Le soluzioni di $ \bm{x}'=A\,\bm{x} $ con $ A \in \R^{2,2} $ con autovalori complessi \[
+        \mu,\overline{\mu} = a\pm i\,b
+    \]e autovettori $ \bm{z}_{\mu} = \bm{w}+i\,\bm{v}   $, definita la matrice $ Q=[\bm{v}, \bm{w}] $ sono \[
+        \bm{x}(t)= e^{at} Q\,R_{bt}\, \bm{c}, \quad \bm{c} \in \R^{2} 
+    \]In particolare, l'unica soluzione di \[
+        \begin{cases}
+            \bm{x}'=A\,\bm{x}\\ 
+            \bm{x}(0)=\bm{x}_0
+        \end{cases}
+    \]è $ \displaystyle \bm{x}(t)=e^{at}\,Q\,R_{bt}\, Q^{-1}\,\bm{x}_0$
+}
+%% END
+
+%% BEGIN Soluzione di una equazione differenziale lineare con una matrice con autovalori regolari
+\paragrafo{Ipotesi}{%
+    Consideriamo $ A \in \R^{n,n} $, con \begin{itemize}
+        \item $ \{\lambda_1,\dots,\lambda_{h} \} $ autovalori reali con autovettori $ \{\bm{u}_1,\dots,\bm{u}_h\} $;
+        \item $ \{\mu_1, \overline{\mu}_1, \dots, \mu_{k}, \overline{\mu}_k \} $ autovalori complessi con autovettori $ \{\bm{z}_1,\dots,\bm{z}_k\} $
+    \end{itemize}tali per cui $ h+2k=n $. Scrivo \begin{align*}
+        \mu_{j} &= a_{j} + i\,b_{j}\\   
+        \bm{z}_j &= \bm{w}_j+i\,\bm{v}_j
+    \end{align*}
+
+    Costruisco la matrice \[
+        Q=\begin{pmatrix}
+            \bm{u}_1 & \dots & \bm{u}_h & \bm{v}_1 & \bm{w}_1 & \dots & \bm{v}_k & \bm{w}_k 
+        \end{pmatrix}
+    \]e la matrice pseudo diagonale: \[
+        \tilde{D}=\begin{pmatrix}
+            \lambda_1\\ 
+            & \lambda_2\\ 
+            & & \ddots\\ 
+            & & & \lambda_{h}\\ 
+            & & & & \begin{bmatrix}
+                a_1 & -b_1\\ 
+                b_1 & a_1
+            \end{bmatrix}\\
+            & & & & &\ddots\\ 
+            & & & & & &\begin{bmatrix}
+                a_k & -b_k\\ 
+                b_k & a_k
+            \end{bmatrix}
+        \end{pmatrix}
+    \]e dunque si ha che \[
+        \tilde{R}=e^{t\tilde{D}}=\begin{pmatrix}
+            e^{\lambda_1\,t}\\ 
+            & \ddots\\ 
+            & & e^{\lambda_h\,t}\\ 
+            & & &\begin{bmatrix}
+                e^{a_1\,t}R_{b_1\,t} 
+            \end{bmatrix}\\ 
+            & & & &\ddots\\ 
+            & & & & &\begin{bmatrix}
+                e^{a_k\,t}R_{b_k\,t} 
+            \end{bmatrix}
+        \end{pmatrix}
+    \]dove $ R_{b_{j}\,t }$ è la matrice \[
+        \begin{pmatrix}
+            \cos(b_j\,t) & -\sin(b_j\,t)\\ 
+            \sin(b_j\,t) & \cos(b_j\,t)
+        \end{pmatrix}
+    \]
+}{}{}
+\teorema{ddoodoodododokcpokspokdpokcspokdpokpok}{
+    Nelle ipotesi precedenti, le soluzioni di $ \bm{x}'(t)=A\,\bm{x}(t) $ sono: $ \displaystyle \bm{x}(t)=Q\,e^{t\tilde{D}}\, \bm{c} $, al variare di $ \bm{c} \in \R^{n} $. In particolare, la soluzione di \[
+        \begin{cases}
+            \bm{x}'(t)=A\,\bm{x}(t)\\ 
+            \bm{x}(0)= \bm{x}_0
+        \end{cases}
+    \]è $ \displaystyle \bm{x}(t)= Q\,e^{t\,\tilde{D}}\,Q^{-1}\,\bm{x}_0 $
+}
+%% END

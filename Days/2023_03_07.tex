@@ -1,0 +1,183 @@
+\days{7 marzo 2023}
+\paragrafo{Esempio}{%
+\[
+    \begin{cases}
+        x'=y^{2}-xy^{2}\\ 
+        y'=-x\,y^{3}
+    \end{cases}\qquad \begin{aligned}
+    \bm{f}: \R^{2} &\longrightarrow \R^{2} \\
+    (x,y) &\longmapsto (y^{2}-xy^{2}, -xy^{3})
+    \end{aligned}
+\]\begin{enumerate}
+    \item \emph{Equilibri}: \[
+        \begin{cases}
+            y^{2}(1-x)=0\\ 
+            x\,y^{3} = 0
+        \end{cases}
+    \]la prima equazione è soddisfatta per $ x = 1 $, oppure per $ y = 0 $, mentre la seconda è soddisfatta da $ x = 0 $ oppure $ y = 0 $. 
+
+    Entrambe le equazioni sono soddisfatte se e solo se $ y=0 $ 
+    
+    $\implies$ $ \displaystyle \left\{(x,0): x \in \R\right\} $ è composto da equilibri. 
+    \item \emph{Punti con tangente verticale}: $ x'=0 $;
+    
+    Oltre ai punti di equilibrio, sono tutti i punti sulla retta verticale $ x=1 $. Questa quindi è una retta invariante, composta da orbite.
+
+    Se $ x = 1 $ abbiamo \[
+        \begin{cases}
+            x'=0\\ 
+            y'=-y^{3}
+        \end{cases}
+    \]
+    \item \emph{Punti con tangente orizzontale}: $ y'=0 $. 
+    
+    Oltre ai punti di equilibrio, sono tutti i punti sulla retta verticale $ x=0 $.
+
+    Se $ x=0 $ abbiamo \[
+        \begin{cases}
+            x'=y^{2}>0 & y>0\\ 
+            y'=0
+        \end{cases}
+    \]
+    \begin{figure}
+        \begin{center}
+            \begin{tikzpicture}
+                \draw [-Latex] (-3,0) -- (3,0);
+                \draw [-Latex] (0,-3) -- (0,3);
+                \node at (3,-0.2) {$x$};
+                \node at (-0.2,3) {$y$};
+                \foreach \i in{-2.4,-2,...,2.4}{
+                    \fill (0,\i) circle (0.05);
+                    \draw [-Latex, thin] (0,\i) -- (0.4,\i);
+                };
+                \draw [thick,-Latex] (1,3) -- (1,1.3);
+                \draw [thick] (1,1.5) -- (1,-1.5);
+                \draw [thick,-Latex] (1,-3) -- (1,-1.3);
+                \fill (1,0) circle (0.1);
+            \end{tikzpicture}
+        \end{center}
+        \caption{Punti con tangenti verticali e orizzontali per l'esempio \framref{dafasdflkjnsadfkjnasdfkjnadskfjnasdkfjnldskjn}}
+    \end{figure}
+    \item \emph{Equazioni delle orbite}: per $ y\neq 0 $ e $ x\neq 1 $ ho: \begin{equation}
+        \frac{d\,y}{dx} =\frac{-xy^{3}}{y^{2}(1-x)}\quad\leadsto\quad \begin{cases}
+            y'(x)=\displaystyle\frac{-x}{1-x}\,y(x) \label{eq:diff:orb}\\ 
+            y(x_0)=y_0
+        \end{cases}
+    \end{equation}e integrando si ottiene \[
+        \ln\frac{|y|}{|y_0|} = x-x_0 + \ln\frac{|x-1|}{|x_0-1|}
+    \]Noto che poiché le orbite non intersecano l'asse $ x $ (poiché sono altre orbite), $ y(x) $ e $ y_0 $ hanno lo stesso segno, dunque posso ``eliminare'' i valori assoluti. Con lo stesso ragionamento ``elimino'' il secondo valore assoluto. Diventa: \[
+        \ln\frac{y}{y_0} = x-x_0 + \ln\frac{x-1}{x_0-1}
+    \]Facendo l'esponenziale da ambo le parti otteniamo \[
+        y(x)= y_0\,\frac{x-1}{x_0-1}\,e^{x-x_0}
+    \]Alcune osservazioni: \begin{enumerate}
+        \item le orbite con dato iniziale $ (x_0,y_0) $ e $ (x_0,-y_0) $ sono simmetriche rispetto all'asse orizzontale 
+        
+        $\implies$ consideriamo solo $ y_0 >0$. 
+
+        Dividiamo ancora i due casi: \begin{itemize}
+            \item $ x_0>1 $ $ \,\implies\, $ $ \displaystyle y_0\,\frac{x-1}{x_0-1}>0 $\[
+                \,\implies\,\lim_{x\to 1^{+}} y(x) = 0^{+},\qquad \lim_{x\to + \infty} y(x) = + \infty
+            \]e guardando l'equazione differenziale delle orbite \eqref{eq:diff:orb}\[
+                y'(x)=\frac{x}{x-1}\,y(x) >0
+            \]e quindi $ y $ come funzione di $ x $ è monotona crescente.
+            
+            Noto inoltre che per $ x_0>1 $, $ x'=y^{2}(1-x)<0 $, dunque le frecce delle orbite sono rivolte verso $ x=1 $. 
+            \item $ x_0<1 $ $ \,\implies\, $ $ \displaystyle \frac{y_0}{x_0-1}>0 $, $ x-1<0 $: \[
+                \lim_{x\to 1^{-}} y(x) = 0^{+},\qquad \lim_{x\to - \infty} y(x) = 0^{+}
+            \]e inoltre la funzione è sempre positiva. 
+
+            Si inoltre che $ x'>0 $, dunque le frecce sono rivolte verso $ x=1 $.
+        \end{itemize}
+        Le orbite sono illustrate nella figura \ref{fig:orbitedivattelaapesce}
+        \begin{figure}
+            \begin{center}
+                \input{matlab_graph/grafico2.tex}
+            \end{center}
+            \caption{Orbite per l'esempio \framref{dafasdflkjnsadfkjnasdfkjnadskfjnasdkfjnldskjn}.}\label{fig:orbitedivattelaapesce}
+        \end{figure}
+    \end{enumerate}
+\end{enumerate}
+}{dafasdflkjnsadfkjnasdfkjnadskfjnasdkfjnldskjn}{}
+%% BEGIN Pendolo Piano Senza Attrito
+\paragrafo{Pendolo Piano Senza Attrito}{% 
+    Consideriamo un pendolo piano senza attrito, e sia $ \theta $ l'angolo rispetto alla verticale. La legge che regola il moto è \[
+        \theta''(t)= -\frac{g}{l}\,\sin \theta(t)
+    \]Se $ \alpha= \sqrt{g/l} $, definendo $ x(t)= \theta(\alpha\,t) $, l'equazione del moto diventa: \[
+        x ''(t)= -\sin x(t)
+    \]equazione non lineare del secondo ordine. La trasformo, tramite la trasformazione $ x'(t)=y(t) $, in un sistema di equazioni del primo ordine: \[
+        \begin{cases}
+            x'(t)=y(t)\\ 
+            y'(t) = -\sin x(t)
+        \end{cases}
+    \]\begin{enumerate}
+        \item \emph{Equilibri:} sono i punti che soddisfano il sistema \[
+            \begin{cases}
+                y=0\\ 
+                \sin x = 0
+            \end{cases}
+        \]ovvero tutti quelli nella forma $ (k\, \pi,0) $, per $ k \in \Z $.
+        \item \emph{Punti con tangente orizzontale:} $ x'=0 $ $ \leadsto $ $ y=0 $; 
+        
+        Noto inoltre che $ y'>0 $ quando $ x \in [\pi +2k\,\pi, 2(k+1)\,\pi] $. 
+        \item \emph{Punti con tangente verticale:} $ y'=0 $ $ \leadsto $ $ \sin x = 0 $ 
+        
+        $\implies$ $ x = k\, \pi $, $ k \in \Z $. 
+        \begin{figure}
+            \begin{center}
+                \begin{tikzpicture}[scale=1.2]
+                    \draw [-Latex] (-3.5,0) -- (3.5,0);
+                    \draw [-Latex] (0,-2) -- (0,2);
+                    \foreach \k in{-3,-2,...,3}{
+                        \draw [dashed] (\k, -2) -- (\k,2);
+                        \fill [black] (\k,0) circle (0.07);
+                        \draw [-Latex, thick] (\k, 1) -- (\k+0.5, 1);
+                        \draw [-Latex, thick] (\k, -1) -- (\k-0.5, -1);
+                    };
+                    \foreach \k in{-2.5,-0.5,1.5}{
+                        \draw [-Latex, thick] (\k, -0.3) -- (\k,0.3);
+                        \draw [-Latex, thick] (\k+1, +0.3) -- (\k+1,-0.3);
+                    };
+                    \node at (-3,-2.3) {$-3\,\pi$};
+                    \node at (-2,-2.3) {$-2\,\pi$};
+                    \node at (-1,-2.3) {$-\pi$};
+                    \node at (1,-2.3) {$\pi$};
+                    \node at (2,-2.3) {$2\,\pi$};
+                    \node at (3,-2.3) {$3\,\pi$};
+                \end{tikzpicture}
+            \end{center}
+            \caption{Punti di equilibrio e a tangente orizzontale/verticale per il pendolo senza attrito}
+        \end{figure}
+        \item \emph{Equazione delle orbite:} quando $ y\neq 0 $, si ha che \begin{align*}
+            y'(x) &= \frac{-\sin x}{y(x)}\\ 
+            y(x)\,y'(x) &= -\sin x\\ 
+            y_{c}(x) &= \pm \sqrt{2\left(\cos x + c\right)} 
+        \end{align*}Le orbite variano al variare di $ c $: \begin{itemize}
+            \item $ c<-1 $: non ci sono soluzioni;
+            \item $ c=-1 $: ottengo i valori per cui $ \cos x = 1 $, ovvero i punti di equilibrio $ (2n\,\pi, 0) $, $ n \in \Z $;
+            \item $ c \in (-1,1) $: ottengo soluzioni definite sull'intervallo $ [-x_{c}, x_{c}  ] $ modulo $ 2\pi $, dove \[
+                x_{c}=\arccos{-c};
+            \]
+            \item $ c\ge1 $: si creano infinite eterocline. 
+        \end{itemize}
+        In definitiva, le orbite sono quelle illustrate nella figura \ref{fig:sodaufnaisdufjaiuhfaoisfjdaosi}
+        \begin{figure}
+            \begin{center}
+                \input{matlab_graph/grafico3.tex}
+            \end{center}
+            \caption{Orbite per il pendolo piano senza attrito}\label{fig:sodaufnaisdufjaiuhfaoisfjdaosi}
+        \end{figure}
+
+        Per una comprensione più profonda, si rimanda alle dispense del corso, \cite{dispense}, pp. 27-31.
+    \end{enumerate}
+}{dsfsdfsdfsdfsdfsdfsdfds}{}
+\osservazione{
+    L'equazione caratterizzante del pendolo piano \[
+        \ddot{x}=-\sin x
+    \]può essere considerato come sistema conservativo in dimensione 1. Moltiplicando da entrambe le parti per $ \dot{x} $, otteniamo \begin{align*}
+        \dot{x}\,\ddot{x} &= -(\sin x)\,\dot{x}\\
+        \frac{d}{dt}\left(\frac{1}{2}\,\dot{x}^{2}\right) &= \frac{d}{dt} \left(\cos x\right)\\ 
+        \frac{d}{dt}\left(\frac{1}{2}\,\dot{x}^{2}-\cos x\right) &=0\\ 
+        \frac{1}{2}\,\dot{x}^{2}-\cos x &= c
+    \end{align*}Abbiamo trovato una costante del moto, pari alla somma tra \emph{energia cinetica} ed \emph{energia potenziale}: l'\emph{energia totale} è conservata.
+}
+%% END
