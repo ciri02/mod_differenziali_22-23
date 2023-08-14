@@ -1,0 +1,379 @@
+    \chapter{Campi di vettori e forme differenziali su spazi affini}
+	\paragraph{Def} Si chiama \underline{spazio affine} la terna $(A,E,\delta)$
+    \begin{itemize}
+        \item $A$ è un insieme di elementi che chiamiamo punti
+        \item $E$ è uno spazio vettoriale
+        \item $\delta \colon A \times A \to E$ applicazione tale che:
+        \begin{enumerate}
+            \item $\forall\, (P,Q) \in A\times E, \exists! \, Q \in A \colon \delta(P,Q)=\mathbf{v}$
+            \item $\forall\, P,Q,R \in A, \delta(P,Q)+\delta(Q,R)=\delta(P,R)$
+        \end{enumerate}
+    \end{itemize}
+    Per definizione la dimensione dello spazio affine $A$ è la dimensione dello spazio vettoriale soggiaciente $E$.
+    \paragraph*{Not:} Uno spazio affine $(A,E,\delta)$ è indicato più brevemente con $A$, mentre il vettore $\delta(P,Q)$ è indicato semplicemente con $PQ$.
+    \paragraph*{Def} Un vettore $\mathbf{v}\in E$ è chiamto \underline{vettore libero}, mentre con la coppia $(P,\mathbf{v})$ indicheremo il vettore $\mathbf{v}$ applicato nel punto $P$.
+    \paragraph*{Def} Sia $A$ uno spazio affine. Un \underline{riferimento cartesiano} è una coppia $(O,\mathbf{c}_\alpha)$, dove:
+    \begin{itemize}
+        \item $O$ è l'origine
+        \item $(\mathbf{c}_\alpha)=(\mathbf{c}_1,\dots,\mathbf{c}_n)$ è una base di $E$
+    \end{itemize}
+    Un riferimento cartesiano stabilisce una corrispondenza biunivoca
+        \begin{align*}
+            \Phi \colon A \leftrightarrow \mathbb{R}^n\\
+            P\leftrightarrow (x^\alpha)
+        \end{align*}
+    dove ad ogni punto $P\in A$ si fa corrispondere l'ennupla reale $(x^\alpha)$ costituita dalle componenti secondo la base $(\mathbf{c}_\alpha)$ del vettore $OP$:
+        \begin{align*}
+            OP=\mathbf{x}=x^\alpha\mathbf{c}_\alpha
+        \end{align*}
+    Risultano così definite anche delle mappe $x^\alpha\colon A \to \mathbb{R}$ dette \underline{coordinate cartesiane} o \underline{affini}, tali che $x^\alpha(P)\mathbf{c}_\alpha=OP$
+    \paragraph*{OSS:} Questa corrispondennza biunivoca istituisce anche una topologia di $A$ indotta dalla topologia di $\mathbb{R}^n$.
+    \paragraph*{Trasformazioni affini} Se si considerano due riferimenti affini $(O,\mathbf{c}_\alpha)$ e $(O',\mathbf{c}_{\alpha'})$, 
+    allora vi è un legame tra i due sistemi di coordinate indotti $(x^\alpha)$ e $(x^{\alpha'})$, ovvero:
+        \begin{align*}
+            x^\alpha=a^\alpha_{\alpha '}x^{\alpha'}+b^\alpha && x^{\alpha'}=a^{\alpha'}_\alpha x^\alpha+b^{\alpha'}
+        \end{align*}
+    Dove $a^\alpha_{\alpha '}$ e $a^{\alpha'}_\alpha$ compongono le matrici dei cambiamenti di base:
+    \begin{align*}
+        \mathbf{c}_{\alpha'}=a^\alpha_{\alpha '}\mathbf{c}_\alpha && \mathbf{c}_\alpha=a^{\alpha'}_\alpha \mathbf{c}_{\alpha'}
+    \end{align*}
+    Mentre $(b^\alpha)$ $(b^{\alpha'})$ sono le componenti rispettivamente del vettore $OO'$ e $O'O$.
+    \paragraph{Def} Sia $A$ uno spazio affine. Una funzione $f$ del tipo:
+    \begin{align*}
+        f:A\to \mathbb{R}\\
+        P\mapsto f(P)
+    \end{align*}
+    è detta \underline{campo scalare}.
+    Possiamo vedere $f=g\circ \Phi$ con:
+    \begin{align*}
+    A\xrightarrow[]{\Phi} \mathbb{R}^n\xrightarrow[]{g} \mathbb{R}\\P\xmapsto[]{\Phi}(x^\alpha)\xmapsto[]{g} g(x^\alpha)
+    \end{align*}
+    Dove $g\colon\mathbb{R}^n\to \mathbb{R}$ è detta \underline{rappresentazione del campo $f$}.
+    \paragraph*{Proprietà} L'insieme dei campi scalari su $A$ ha una struttura di anello commutativo e algebra associativa e commutativa.\\
+     Siano $f,g$ due campi scalari, allora:
+    \begin{enumerate}
+        \item \textit{Somma di campi}: $(f+g)(P)=f(P)+g(P)$
+        \item \textit{Prodotto numerico}: $(fg)(P)=f(P)g(P)$
+        \item \textit{Prodotto per uno scalare}: $(af)(P)=af(P), a \in \mathbb{R}$
+    \end{enumerate}
+    Denoteremo con $\mathcal{F}(A)$ l'anello dei campi scalari sullo spazio affine $A$.
+    \paragraph*{Def} Un \underline{campo vettoriale} è una mappa:
+    \begin{align*}
+        \mathbf{X}\colon A \to A\times E\\
+        P\mapsto (P,\mathbf{X}(P))
+    \end{align*}
+    ovvero ad un punto $P$ associa un vettore $\mathbf{X(P)}$ applicato in $P$.\\
+    Fissato un riferimento cartesiano, ogni campo vettoriale $\mathbf{X}$ risulta rappresentato da un insieme di $n$ funzioni reali $X^\alpha\colon A \to \mathbb{R}$, dette \underline{componenti cartesiane}, tali che:
+    \begin{align*}
+        \mathbf{X}(P)=X^\alpha(P)\mathbf{c}_\alpha
+    \end{align*}
+    Queste componenti in quanto campi scalari hanno anche loro una funzione rappresentativa, tale per cui si possono anche denotare come $X^\alpha(x^{\beta})$.
+    \paragraph*{Proprietà} Siano $\mathbf{X}$ e $\mathbf{Y}$ due campi vettoriali. Sono definite le operazioni di:
+    \begin{enumerate}
+        \item \textit{Somma}: $(\mathbf{X}+\mathbf{Y})(P)=\mathbf{X}(P)+\mathbf{Y}(P)$
+        \item \textit{Prodotto per un numero reale}: $(a\mathbf{X})(P)=a(\mathbf{X}(P)), a \in \mathbb{R}$
+    \end{enumerate}
+    Con queste due operazioni l'insieme dei campi vettoriali su $A$, che denoteremo con $\mathcal{X}(A)$, ha una struttura di modulo.
+    \paragraph{Def} Sia $f\in \mathcal{F}(A)$ e $X\in \mathcal{X}(A)$. La \underline{derivata di un campo scalare $f$ rispetto ad un campo vettoriale $\textbf{X}$} è il campo scalare 
+    \begin{align*}
+        \hat{\textbf{X}} (f)=\textbf{X}^\alpha\cfrac{\partial f}{\partial x^\alpha}
+    \end{align*}
+    Dove con: 
+    \begin{align*}
+            \frac{\partial f}{\partial x^\alpha}
+    \end{align*}
+    s'intende la derivata parzialerispetto alla $x^\alpha$ della funzione rappresentativa $f(x^1,\dots,x^n)$ in un qualunque sistema di coordinate cartesiane.\\
+    Dunque è una mappa che, una volta fissato un $\mathbf{X}\in \mathcal{X}(A)$:
+    \begin{align*}
+        \hat{\textbf{X}} \colon \mathcal{F}(A)\to \mathcal{F}(A)\\
+        f\mapsto \hat{\textbf{X}} (f)=\textbf{X}^\alpha\cfrac{\partial f}{\partial x^\alpha}
+    \end{align*}
+    \paragraph{Proprietà} Siano $f,g\in \mathcal{F}(A)$. Si verifica facilmente che $\hat{\textbf{X}}$ soddisfa:
+    \begin{itemize}
+        \item \textit{$\mathbb{R}$-lineare}: $\hat{\textbf{X}}(af+bg)=a\hat{\textbf{X}}(f)+b\hat{\textbf{X}}(g)$, $a,b\in \mathbb{R}$
+        \item \textit{Leibnitz}: $\hat{\textbf{X}}(f\cdot g)=\hat{\textbf{X}}(f)\cdot g+f\cdot \hat{\textbf{X}}(g)$
+    \end{itemize} Una funzione che soddisfa queste due proprietà è per l'appunto chiamata \underline{derivazione}.
+    \paragraph{Invarianza per cambiamenti di coordinate affini} Un'altro fatto interessante in merito alla derivazione di un campo scalare $f$ rispetto ad un campo vettoriale $\mathbf{X}$ è la sua indipendenza dalle coordinate affini stabilite.\\
+    Sia $X\in \mathcal{X}(A)$ e siano $(\mathbf{c}_\alpha)$ e $(\mathbf{c}_{\alpha'})$ due basi. Si consideri la rappresentazione del campo secondo le due basi:
+    \begin{align*}
+        \mathbf{X}=X^\alpha\mathbf{c}_\alpha =X^{\alpha'}\mathbf{c}_{\alpha'}
+    \end{align*}
+    Tenuto conto delle relazioni tra le basi, si ha la relazione:
+    \begin{align*}
+        X^\alpha=a^\alpha_{\alpha'}X^{\alpha'}
+    \end{align*}
+    D'altra parte, interpretando la $f$ come funzione delle $(x^\alpha)$ per il tramite delle $(x^{\alpha'})$ dalle relazioni precedneti a le basi si ha:
+    \begin{align*}
+        \frac{\partial f}{\partial x^\alpha}=\frac{\partial f}{\partial x^{\alpha'}}\frac{\partial x^{\alpha'} }{\partial x^\alpha}=\frac{\partial f}{\partial x^{\alpha '}}a^{\alpha'}_\alpha
+    \end{align*}
+    Si ha quindi:
+    \begin{align*}
+        X^\alpha\frac{\partial f}{\partial x^\alpha}=X^\alpha\frac{\partial f}{\partial x^{\alpha'}}a^{\alpha'}_\alpha= X^{\alpha'}\frac{\partial f}{\partial x^{\alpha'}}
+    \end{align*}
+    Ciò mostra l'indipendenza della definizione dalla scelta delle coordinate cartesiane.
+    \paragraph{Def} Siano $\mathbf{X},\mathbf{Y}\in \mathcal{X}(A)$ .Definiamo il \underline{commutatore di $\mathbf{X}$ e $\mathbf{Y}$} come il campo vettoriale:
+    \begin{align*}
+    [\cdot,\cdot]\colon \mathcal{X}(A)\times \mathcal{X}(A)\to \mathcal{X}(A)\\
+        (\mathbf{X},\mathbf{Y})\mapsto[\mathbf{X},\mathbf{Y}]f=\hat{\mathbf{X}}(\hat{\mathbf{Y}}(f))-\hat{\mathbf{Y}}(\hat{\mathbf{X}}(f)) && f\in \mathcal{F}(A)
+    \end{align*}
+    \paragraph{Proprietà} Siano $\mathbf{X},\mathbf{Y},\mathbf{Z}\in \mathcal{X}(A)$. Il commutatore è un'operazione binaria interna $[\cdot,\cdot]$:
+    \begin{itemize}
+        \item \textit{Anticommutativa}: $[\mathbf{X},\mathbf{Y}]=-[\mathbf{Y},\mathbf{X}]$
+        \item \textit{Bilineare}:
+    $[a\mathbf{X}+b\mathbf{Y},\mathbf{Z}]=a[\mathbf{X},\mathbf{Z}]+b[\mathbf{Y},\mathbf{Z}]$
+    \item Soddisfa l'\textit{Identità di Jacobi}:
+    \begin{align*}
+        [\mathbf{X},[\mathbf{Y},\mathbf{Z}]]+[\mathbf{Z},[\mathbf{X},\mathbf{Y}]]+[\mathbf{Y},[\mathbf{Z},\mathbf{X}]]=0
+    \end{align*}
+    \end{itemize}
+    Ovvero $(\mathcal{X}(A),[\cdot,\cdot])$ è un'\underline{algebra di Lie}.
+\paragraph{Def} Sia $\mathbf{X}\in \mathcal{X}(A)$. La \underline{divergenza} di $\mathbf{X}$ è una funzione:
+\begin{align*}div\colon\mathcal{X}(A)\to \mathcal{F}(A)\\
+     X\mapsto div(X)
+    \end{align*}
+    Dove $div(X)=\frac{\partial X^1}{\partial x^1}+...+\frac{\partial X^n}{\partial x^n}=\frac{\partial X^\alpha}{\partial x^\alpha}$.
+
+\paragraph{Proprietà} Siano $\mathbf{X},\mathbf{Y}\in \mathcal{X}(A)$. La divergenza gode delle seguenti proprietà:
+\begin{itemize}
+    \item $div(X+Y)=div(X)+div(Y)$
+    \item $div(fX)=fdiv(V)+ X(f),\: f\in \mathcal{F}(A)$
+    \item $X=$ costante\footnote{Considerato $X=$ costante nelle coordinate cartesiane affini $(x^\alpha)$} $\Rightarrow \: div(X)=0$
+\end{itemize}
+\paragraph{Def} Una \underline{carta} di dimensione $n$ su un insieme $A$ è una coppia $(U,\varphi)$, dove 
+\begin{itemize}
+    \item $U\subseteq A$  
+    \item $\varphi$ è una mappa biettiva:
+    \begin{align*}
+        \varphi\colon U\to \varphi(U)\subseteq \mathbb{R}^n
+    \end{align*}
+    la cui immagine $\varphi(U)$ è un aperto di $\mathbb{R}^n$.
+\end{itemize}
+\paragraph{Def} Possiamo definire le \underline{coordinate associate} alla carta $(U,\varphi)$ come le $n$ funzioni:
+\begin{align*}
+    q^i\colon U\to \mathbb{R}&&
+    q^i=pr_i\circ \varphi
+\end{align*}
+dove:\begin{minipage}{4cm}
+\begin{align*}
+pr_i\colon\mathbb{R}^n\to \mathbb{R}\\
+    (r^1,...r^n)\mapsto r^i
+\end{align*}
+\end{minipage}
+\begin{minipage}{7cm}
+è la proiezione della i-esima coordinata.
+\end{minipage}
+\paragraph{oss} Sia $A$ uno spazio affine, siano $(x^\alpha)$ coordinate affini su $A$ e sia $(U,\varphi)$ una carta di dimensione $n$.\\
+Le coordinate $q^i$ si possono rappresentare come funzioni delle $n$ $(x^\alpha)$:
+\begin{align*}
+    q^i=q^i(x^\alpha)
+\end{align*}
+Essendo tutte applicazioni biettive si può invertire su $\varphi (U)$, ovvero:
+\begin{align*}
+    x^\alpha=x^\alpha(q^i)
+\end{align*}
+Quindi ricapitolando
+\paragraph{Def} Si possono definire i \underline{cambiamenti} (o \underline{trasformazioni}) \underline{di coordinate}, come:
+\begin{align*}
+    q^i=q^i(x^\alpha) && x^\alpha=x^\alpha(q^i)
+\end{align*}
+Con le matrici Jacobiane delle trasformazioni, rispettivamente:
+\begin{align*}
+    E^i_\alpha= \frac{\partial q^i}{\partial x^\alpha} (x^\beta) && E^\alpha_i= \frac{\partial x^\alpha}{\partial q^i} (q^j)
+\end{align*}
+Queste sono regolari e una l'inversa dell'altra.
+\paragraph{ESEMPIO coordinate non affini-cerchio}
+Si considerino le coordinate del piano affine $(x,y)$ e le trasformazioni di queste in coordinate polari piane $(r,\theta)$:
+\begin{align*}
+x^\alpha=x^\alpha(q^i)\colon\begin{cases}
+    x=r\,cos\theta\\
+    y=r\,sen\theta
+    \end{cases} &&r>0,\: -\pi<\theta<\pi
+\end{align*}%% disegno disegno
+con trasformazione di coordinate inversa:
+\begin{align*}
+q^i=q^i(x^\alpha)\colon \begin{cases}
+r=\sqrt{x^2+y^2}\\
+\theta=\begin{cases}
+arcsin\cfrac{y}{\sqrt{x^2+y^2}}\;x\ge 0 \\
+\pi-arcsin\cfrac{y}{\sqrt{x^2+y^2}}\; x<0,\,y>0\\
+-\pi-arcsin\cfrac{y}{\sqrt{x^2+y^2}}\;x<0,\,y<0
+\end{cases}
+    \end{cases}
+\end{align*}
+\paragraph{ESEMPIO coordinate non affini-sfera} Consideriamo le coordinate dello spazio affine $(O,(x,y,z))$ e la trasformazione in coordinate polari sferiche:
+\begin{align*}
+\begin{cases}
+x=r\:sen\varphi\:cos\theta\\
+y=r\:cos\varphi\:sin\theta\\
+ z=r\:cos\varphi
+    \end{cases}
+\end{align*}
+$(q^1,q^2,q^3)=(r,\varphi,\theta)$ sono definite sul dominio aperto $U$ in $\mathbb{R}^3$ asportando il semiasse positivo delle $x$ e tutto l'asse $z$. La carta è a valori nell'aperto $\varphi(V)=\left\{(r,\varphi,\theta)\in \mathbb{R}^3\colon r>0, 0<\varphi<\pi, 0<\theta<2\pi\right\}$, dove:
+\begin{align*}
+    \begin{cases}
+        r\equiv\text{raggio}\\
+        \varphi\equiv\text{colatitudine}\\
+        \theta\equiv \text{longitudine}
+    \end{cases}
+\end{align*}
+In generale $x^\alpha=x^\alpha(q^i)$ si può anche scrivere come $\textbf{x}=\mathbf{x}(q^i)$ con $\mathbf{x}$ un vettore in $\mathbb{R}^3$ che rappresenta il vettore posizione $OP=x^\alpha \mathbf{e}_\alpha$.
+%%
+%%
+%%
+%%
+%%
+\paragraph{Simboli di Christoffel} Consideriamo i campi vettoriali $\mathbf{E_i}$. Visto che questi possono essere espressi in funzione delle coordinate $q^i$, ha senso considerarne le derivate parziali:
+\begin{align*}
+    \frac{\partial \mathbf{E}_i}{\partial q^i}=\frac{\partial^2\mathbf{x}}{\partial q^k\partial q^i}
+\end{align*}
+Queste derivate parziali sono a loro volta dei campi vettoriali e quindi possiamo considerarne la rappresentazione secondo il riferimento $(\mathbf{E}_i)$:
+\begin{align*}
+    \partial_j\mathbf{E}_i=\partial_j\partial_i\mathbf{x}=\Gamma^h_{ji}\mathbf{E}_h
+\end{align*}
+Le componenti $\Gamma^h_{ji}$ sono delle funzioni sopra il dominio $U$ della carta denominate \underline{simboli di Christoffel}.
+\paragraph{Proprietà} I simboli di Christoffel hanno le seguenti proprietà:
+\begin{itemize}
+    \item $\boxed{\Gamma^h_{ji}=\Gamma^h_{ji}}$: Questo vale per definizione stessa dei simboli di Christoffel. Essendo definiti tramite le derivate secondo di funzioni regolari, sono simmetrici rispetto agli indici in basso.
+    \item $\boxed{\Gamma^h_{ji}=0\text{ se e solo se le coordinate sono cartesiane}}$: Dalla definizione si vede che sono identicamente nulli se e solo se i campi $\mathbf{E}_i$ sono costanti e ciò accade se e solo se le coordinate sono cartesiane.
+\end{itemize}
+
+
+\section{Forme differenziali}
+\paragraph{Def} Sia $A$ uno spazio affine. Una \underline{forma lineare} o \underline{1-forma} su $A$ è un'applicazione:
+\begin{align*}
+    \varphi \colon \mathcal{X}(A)\to \mathcal{F}(A)
+\end{align*}
+tale che $\varphi$ sia \textit{$\mathcal{F}(A)$-lineare}, ovvero:
+\begin{align*}
+    \varphi(f\mathbf{X}+g\mathbf{Y})=f\varphi(\mathbf{X})+g\varphi(\mathbf{Y})&& \forall\, f,g\in \mathcal{F}(A)\:\:\forall \, \mathbf{X},\mathbf{Y}\in \mathcal{X}(A)
+\end{align*}
+\paragraph{Proprietà}L'insieme delle forme lineari su $A$, $\Phi^1(A)$, è un modulo sull'anello $\mathcal{F(A)}$. Le operazioni sono così definite:
+\begin{itemize}
+    \item \textit{Somma di 1-forme}: $(\varphi+ \psi)(\mathbf{X})=\varphi(\mathbf{X})+\psi(\mathbf{X})$, $\forall\, \varphi, \psi\in \Phi^1(A)$
+    \item \textit{Prodotto per un campo scalare}: $(f\varphi)(\mathbf{X})=f\cdot \varphi(\mathbf{X})$, $\forall\, f \in \mathcal{F}(A)$
+\end{itemize}
+\paragraph{Not:} Denotiamo con $\langle \mathbf{X},\varphi\rangle $ il valore della forma lineare $\varphi$ sul campo vettoriale $\mathbf{X}$. In tal modo
+\paragraph{Def} Definiamo un'applicazione lineare:
+\begin{align*}
+    \langle \cdot,\cdot\rangle  \colon \mathcal{X}(A)\times \Phi^1(A)\to \mathcal{F}(A)
+\end{align*}
+che prende il nome di \underline{valutazione} tra un forma lineare e un campo vettoriale.
+\paragraph{Oss:} Una forma lineare può anche essere interpretata come \underline{campo di covettori}, cioè come un'applicazione:
+\begin{align*}
+    \varphi \colon A \to A \times E^*
+\end{align*}
+che associa ad ogni punto $P\in A$ un covettore applicato in $P$.\\
+Il collegamento tra questa e la definizione precedente è dato dalla formula:
+\begin{align*}
+    \langle \mathbf{X},\varphi(P)\rangle =\langle \mathbf{X}(P),\varphi(P)\rangle 
+\end{align*} 
+Assume cosi senso valutare una 1-forma $\varphi$ su di un vettore applicato $(P,\mathbf{v})$. Il risultato $\langle \mathbf{v},\varphi(P)\rangle $ è un numero reale.
+\paragraph{Il differenziale} Un esempio fondamentale di 1-forma è il \underline{differenziale $df$ di un campo scalare $f$}.\\
+Questo è definito dall'uguaglianza:
+\begin{align*}
+    \langle \mathbf{X},df\rangle = \hat{\mathbf{X}}(f)
+\end{align*}
+La linearità dell'applicazione:
+\begin{align*}
+    df\colon \mathcal{X}(A)\to \mathcal{F}(A)\\
+    \mathbf{X}\mapsto \langle \mathbf{X},df\rangle 
+\end{align*}
+segue dal fatto che $\hat{\mathbf{X}}(f)$ è lineare rispetto al campo vvettoriale $\mathbf{X}$, una volta fissato il campo scalare $f$. Inoltre dalla regola di Leibnitz per la derivata rispetto ad un campo vettoriale segue la regola di Leibnitx per il differenziale:
+\begin{align*}
+    d(fg)=gdf+fdg
+\end{align*}
+\paragraph{Differenziale di $(q^i)$} Il nostro obiettivo adesso è quello di studiare il differenziale delle $(q^i)$, generiche coordinate su un aperto $U$.\\
+Essendo delle funzioni reali su $U$ possiamo considerarne i differenziali $(dq^i)$. Queste, come già visto, fanno corrispondere ad un campo $\mathbf{X}$ le sue componenti $X^i$:
+\begin{align*}
+    \langle\mathbf{X},dq^i\rangle=X^i
+\end{align*}
+E quindi in particolare:
+\begin{align*}
+    \langle \mathbf{E}_k,dq^i\rangle=\delta_k^i
+\end{align*}
+D'altra parte, nel dominio $U$, ogni forma lineare è combinazione lineare dei differenziali delle coordinate, ovvero ammette una rappresentazione locale:
+\begin{equation}
+    \label{sus1}
+    \mathbf{\varphi}=\varphi_idq^i
+\end{equation}
+Dove le $(\varphi_i)$ sono funzioni reali su $U$ dette \underline{componenti} di $\mathbf{\varphi}$ nelle coordinate $(q^i)$, definite da:
+\begin{equation}
+    \label{sus2}
+    \varphi_i=\langle\mathbf{E}_i,\mathbf{\varphi}\rangle
+\end{equation}
+Si noti come \ref{sus1}$\Rightarrow$\ref{sus2}, infatti:
+\begin{align*}
+    \langle \mathbf{E}_k,\mathbf{\varphi}\rangle = \varphi_i\langle \mathbf{E}_k,dq^i\rangle = \varphi_i \delta_k^i=\varphi_k
+\end{align*}
+Viceversa, \ref{sus2}$\Rightarrow$\ref{sus1}:
+\begin{align*}
+    \langle \mathbf{X},\varphi_idq^i\rangle=\varphi_i \langle \mathbf{X},dq^i\rangle= \langle \mathbf{E}_i, \mathbf{\varphi}\rangle X^i=\langle X^i\mathbf{E}_i, \mathbf{\varphi}\rangle =\langle \mathbf{X}, \mathbf{\varphi}\rangle
+\end{align*}
+Dalle formule precedenti segue che la valutazione di una forma lineare sopra un campo vettoriale è data, \textit{qualunque siano le coordinate scelte}, dalla somma dei prodotti delle componenti omologhe:
+\begin{align*}
+    \boxed{\langle \mathbf{X},\mathbf{\varphi}\rangle = X^i\varphi_i}
+\end{align*}
+%
+%%
+\paragraph{Def} Una \underline{forma differenziale} o \underline{p-forma} su uno spazio affine $A$ è un'applicazione \textit{p-lineare antisimmetrica} dello spazio $\mathcal{X}(A)^p$ nello spazio $\mathcal{F}(A)$:
+\begin{align*}
+    \phi \colon \underbrace{\mathcal{X}(A)\times \mathcal{X}(A)\times \dots \times \mathcal{X}(A)}_{p \text{ volte}}\to \mathcal{F}(A)
+\end{align*}
+%%
+%%
+%%
+%%
+%%
+%%
+%%
+%%
+%%
+%%
+\chapter{Curve negli spazi affini, rappresentazione in coordinate non affini, e sistemi dinamici}
+\paragraph{Def} Chiamiamo \underline{curva parametrizzata} in uno spazio affine $A$ un'applicazione $\gamma \colon I \to A$ da un intervallo aperto $I\subseteq \mathbb{R}$ nello spazio affine.\\
+Considerata un'origine $O\in A$, per la curva $\gamma$ vi è una \underline{rappresentazione vettoriale}:
+\begin{align*}
+    \mathbf{x}=\gamma(t)&& \text{con }\mathbf{x}=OP
+\end{align*}
+che dunque identifica i punti $P\in A$ con il loro vettore posizione rispetto al punto $O$.\\
+Siano $(x^\alpha)$ delle coordinate cartesiane aventi origine in $O$. Si possono allora considerare le equazioni parametriche:
+\begin{align*}
+    x^\alpha= \gamma^\alpha(t) && \alpha=1,\dots, n
+\end{align*}
+\paragraph{Interpretazione cinematica}Una curva può essere interpretata ocme moto di un punto $P$ nello spazio affine, se il parametro $t$ viene inteso come tempo.\\
+Nel caso in cui la curva rapresenti il moto di un punto enllo sapzio affine tridimensionale euclideo il generico vettore $OP=\mathbf{x}$ è chiamato \underline{vettore posizione}.
+\paragraph{Def} L'immagine della curva, cioè l'insieme $\gamma(I)=\{P\in A | \exists t \in I: \gamma(t)=P\}$ è detta \underline{traiettoria} o \underline{orbita}\footnote{In geometria è questa in realtà la vera e propria curva, ovvero il luogo dei punti definito da $n-1$ equazioni.}.
+\paragraph{Def} Il \underline{vettore tangente} alla curva $\gamma$ nel punto $\gamma(t)$ è il vettore denotato con $\dot{\gamma(t)}$ definito dal limite:
+\begin{align*}
+    \dot{\gamma}(t)=\lim_{h\to 0}\frac{1}{h}(\gamma(t+h)-\gamma(t))
+\end{align*}
+Questo nel contesto cinematico prende il nome di \underline{velocità istantanea} e lo si denota con $\mathbf{v}(t)$.
+\paragraph{Campo tangente come curva} Conviente interpretare il vettore tangente $\dot{\gamma}(t)=\mathbf{v}(t)$ come vettore applicato nel punto $\gamma(t)$. Ovvero come un'applicazione:
+\begin{align*}
+    \hat{\gamma}(t)\colon I \to A\times E\\
+    t\mapsto (\gamma(t),\dot{\gamma}(t))
+\end{align*}
+$\hat{\gamma}(t)$ viene detta \underline{curva tangente} della curva $\gamma\colon I \to A$.
+%%
+%%
+%%
+%%
+%%
+%%
+\paragraph{Def} La \underline{curva integrale} di un campo vettoriale $\mathbf{X}$ è la curva:
+\begin{align*}
+    \gamma \colon I \to A
+\end{align*}
+tale che:
+\begin{itemize}
+    \item $I\subseteq \mathbb{R}$ contiene lo $0$
+    \item In ogni suo punto $\gamma(t)$ il vettore tangente $\dot{\gamma}(t)$ coincide con il valore del campo $\mathbf{X}$ in quel punto ovvero:
+    \begin{align*}
+        \dot{\gamma}=\mathbf{X}\circ \gamma=\mathbf{X}(\gamma(t))
+    \end{align*}
+\end{itemize}
+dove $\gamma\colon I \to A$ e $\mathbf{X}\colon A \to A\times E$.\\
+Diciamo inoltre che la curva integrale è \underline{basata nel punto} $P_0$ se $\gamma(0)=P_0$
+Le curve integrali rappresentano i moti delle particelle del fluido secondo l'interpretazione del campo $\mathbf{X}$ come campo di velocità.\\
+\paragraph{Def} Un campo vettoriale interpretato come campo di velocità viene detto \underline{sistema dinamico}.
+
