@@ -3,7 +3,7 @@
 %% BEGIN Problema di Cauchy
 \paragrafo{Problema di Cauchy}{%
     Data una funzione a valori in $ \R^{n} $, $ \bm{f}=\bm{f}(t,\bm{x}) $, con \begin{itemize}
-        \item $ r \in \R  $, $ \bm{x} \in \R^{n} $ o, più precisamente
+        \item $ t \in \R  $, $ \bm{x} \in \R^{n} $ o, più precisamente
         \item $ (t,\bm{x}) \in \Omega \subseteq \R\times \R^{n}$, $ \Omega $ aperto
     \end{itemize}ci si chiede sotto quali condizioni su $ \bm{f} $ il Problema di Cauchy \[
         \begin{cases}
@@ -43,9 +43,9 @@
 %% END
 %% BEGIN Teorema di Cauchy-Lipschitz
 \teorema[Teorema di Cauchy-Lipschitz]{ldksnaflkjnadflkjadnsflajknkljndasf}{
-    Se $ \bm{f} $ \begin{itemize}
-        \item è continua,
-        \item è localmente lipschitziana rispetto alla seconda variabile e uniformemente nella prima\footnote{Ovvero \[
+    Se $ \bm{f} $ \begin{itemize} è:
+        \item continua,
+        \item localmente lipschitziana rispetto alla seconda variabile e uniformemente nella prima\footnote{Ovvero \[
             \forall\, K \subset \Omega,\quad \exists\,L>0:\quad \norma{\bm{f}(t,\bm{x})-f(t,\bm{y})}\le L\,\norma{\bm{x}-\bm{y}}\qquad \forall\,(t,\bm{x}), (t,\bm{y}) \in K.
         \]}
     \end{itemize}allora per ogni punto $ (t_0,\bm{x}_0) \in \Omega $ esiste un intorno di $ t_0 $, $ [t_0-\delta,t_0+\delta] $ nel quale è definita un'unica soluzione del problema di Cauchy \[
